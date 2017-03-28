@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="账户余额"
+        android:text="详细资料"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
@@ -37,7 +37,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="购房记录"
+        android:text="系统消息"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
@@ -58,7 +58,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="关注楼盘"
+        android:text="检查更新"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
@@ -79,7 +79,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="购房帮助"
+        android:text="意见反馈"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
@@ -100,7 +100,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="房贷计算器"
+        android:text="分享应用"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
@@ -121,7 +121,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:paddingRight="14dp"
-        android:text="设置"
+        android:text="关于APP"
         android:textColor="@color/text_color_black"
         android:textSize="@dimen/text_size_16" />
 
