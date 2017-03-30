@@ -9,7 +9,7 @@
 			layout="@layout/loading"
 			android:visibility="gone"/>
 	-->
-	<com.czfy.zsfy.ui.pulltorefresh.PullToRefreshListView
+	<cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshListView
 			xmlns:ptr="http://schemas.android.com/apk/res-auto"
 			android:id="@+id/listView"
 			ptr:ptrAnimationStyle="flip"

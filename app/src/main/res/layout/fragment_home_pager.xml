@@ -6,7 +6,7 @@
 	android:layout_height="fill_parent"
 	android:background="@null">
 
-	<com.czfy.zsfy.ui.tabstrip.PagerSlidingTabStrip
+	<cn.czfy.zsfy.ui.tabstrip.PagerSlidingTabStrip
 			android:id="@+id/tabs"
 			android:layout_width="match_parent"
 			android:layout_height="38dip"

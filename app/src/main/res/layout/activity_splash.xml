@@ -11,7 +11,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" />
 
-	<com.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator
+	<cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator
 		android:visibility="gone"
 		android:id="@+id/indicator"
 		android:layout_width="match_parent"

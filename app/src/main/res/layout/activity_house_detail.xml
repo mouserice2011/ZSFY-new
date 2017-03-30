@@ -26,12 +26,12 @@
                 android:layout_height="160dp"
                 android:background="@color/white">
 
-                <com.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager
+                <cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager
                     android:id="@+id/pager"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
 
-                <com.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator
+                <cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

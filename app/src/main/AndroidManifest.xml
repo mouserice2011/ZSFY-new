@@ -1,14 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.czfy.zsfy">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="cn.czfy.zsfy">
 
     <application
-        android:name="com.czfy.zsfy.common.AppContext"
+        android:name="cn.czfy.zsfy.common.AppContext"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/czfy"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.czfy.zsfy.activity.SplashActivity"
+            android:name="cn.czfy.zsfy.activity.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
@@ -18,10 +18,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.czfy.zsfy.activity.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait" />
-        <activity android:name="com.czfy.zsfy.activity.LoginActivity" android:screenOrientation="portrait" />
-        <activity android:name="com.czfy.zsfy.activity.HouseDetailActivity" android:screenOrientation="portrait"/>
-        <activity android:name="com.czfy.zsfy.activity.ImageGalleryActivity" android:screenOrientation="portrait"/>
+        <activity android:name="cn.czfy.zsfy.activity.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait" />
+        <activity android:name="cn.czfy.zsfy.activity.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name="cn.czfy.zsfy.activity.HouseDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name="cn.czfy.zsfy.activity.ImageGalleryActivity" android:screenOrientation="portrait"/>
 
     </application>
 
@@ -30,7 +30,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

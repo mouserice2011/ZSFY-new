@@ -23,7 +23,7 @@ android {
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
 
-        applicationId "com.czfy.zsfy"
+        applicationId "cn.czfy.zsfy"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
