@@ -1,10 +1,7 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +12,7 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.dao.Message;
 import cn.czfy.zsfy.db.dao.StudentDao;
 
-public class MsgDetailActivity extends Activity {
+public class MsgDetailActivity extends BaseActivity {
 
 	private TextView tv_top_text;
 	private ImageView bt_top_return;
@@ -34,19 +31,8 @@ public class MsgDetailActivity extends Activity {
 	
 		dao=new StudentDao(this);
 		infos=dao.findMsg();
-		
-		tv_top_text=(TextView) findViewById(R.id.tv_top_lib);
-		tv_top_text.setText("消息详情");
-		bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-		bt_top_return.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				finish();
-			}
-		});
+		showBackBtn();
+		showTitle("消息详情",null);
 		tv_title=(TextView) findViewById(R.id.tv_msg_title);
 		tv_type=(TextView) findViewById(R.id.tv_msg_who);
 		tv_time=(TextView) findViewById(R.id.tv_msg_time);

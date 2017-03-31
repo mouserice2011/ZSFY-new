@@ -1,6 +1,5 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,9 +26,8 @@ import cn.czfy.zsfy.tool.BookData;
 import cn.czfy.zsfy.tool.SaveBookData;
 import cn.czfy.zsfy.tool.SearchBook;
 
-public class LibraryActivity extends Activity {
+public class LibraryActivity extends BaseActivity {
 
-	private ImageView bt_top_return;
 	private ListView lv_lib;
 	private String strBookname = "";
 	private List<BookData> bd;
@@ -46,32 +43,22 @@ public class LibraryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_library);
-		
+		showTitle("图书查询",null);
+		showBackBtn();
 		Intent intent = getIntent();
 		strBookname = intent.getStringExtra("str");
 		lv_lib = (ListView) findViewById(R.id.lv_lib);
 		tv_page = (TextView) findViewById(R.id.tv_page);
 		tv_nextpage = (TextView) findViewById(R.id.tv_nextpage);
 		tv_uppage = (TextView) findViewById(R.id.tv_uppage);
-		bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-		bt_top_return.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				SaveBookData.clear1();
-				LibraryActivity.this.finish();
-			}
-		});
 		tv_uppage.setOnClickListener(new OnClickListener() {// 上一页
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						if (pageNum == 1) {
-							Toast.makeText(LibraryActivity.this, "已经是第一页", 0)
+							Toast.makeText(LibraryActivity.this, "已经是第一页", Toast.LENGTH_SHORT)
 									.show();
 							return;
 						}
@@ -86,7 +73,7 @@ public class LibraryActivity extends Activity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						if (pageNum == maxNum) {
-							Toast.makeText(LibraryActivity.this, "已经是最后一页", 0)
+							Toast.makeText(LibraryActivity.this, "已经是最后一页",  Toast.LENGTH_SHORT)
 									.show();
 							return;
 						}
@@ -219,7 +206,7 @@ public class LibraryActivity extends Activity {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(LibraryActivity.this, text, 0).show();
+				Toast.makeText(LibraryActivity.this, text,  Toast.LENGTH_SHORT).show();
 			}
 		});
 	}

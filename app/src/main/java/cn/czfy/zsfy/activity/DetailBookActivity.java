@@ -1,10 +1,7 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +12,7 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.tool.BookData;
 import cn.czfy.zsfy.tool.SaveBookData;
 
-public class DetailBookActivity extends Activity {
+public class DetailBookActivity extends BaseActivity {
 
 	private TextView tv_libdetail_detail;
 	private ImageView bt_top_return;
@@ -48,6 +45,8 @@ public class DetailBookActivity extends Activity {
 		setContentView(R.layout.layout_lib_detail);
 		List<BookData> s = SaveBookData.bd1;
 		BookData bd = s.get(0);
+		showBackBtn();
+		showTitle("图书详情",null);
 		tv_libdetail_suoshuhao1 = (TextView) findViewById(R.id.tv_libdetail_suoshuhao1);
 		tv_libdetail_suoshuhao2 = (TextView) findViewById(R.id.tv_libdetail_suoshuhao2);
 		tv_libdetail_suoshuhao3 = (TextView) findViewById(R.id.tv_libdetail_suoshuhao3);
@@ -136,14 +135,6 @@ public class DetailBookActivity extends Activity {
 			tv_libdetail_detail.setText(bd.getTv_libdetail_detail() + " \n"
 					+ jieshuinfo[0].split(" ")[0] + " \n");
 		// .setText("出版发行项: 北京:清华大学出版社,2014 \nISBN及定价: 978-7-302-34732-3/CNY48.00 (含光盘) \nISBN及定价: 978-7-89414-733-2 光盘 \n载体形态项: 330页:图;26cm+光盘1片 \n丛编项: 软件入门与提高丛书 \n个人责任者: 相世强 编著 \n个人责任者: 李绍勇 编著 \n学科主题: 表处理软件-应用-财务管理 \n中图法分类号: F275-39 \n一般附注: 经典清华版 \n提要文摘附注: 本书根据各种财务信息和数据管理工作中的需求，以零起点全面介绍Excel在财务管理领域中的应用，并以通俗的讲解和详细的步骤说明。");
-		bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-		bt_top_return.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				DetailBookActivity.this.finish();
-			}
-		});
 	}
 }

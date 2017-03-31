@@ -44,7 +44,16 @@
         <activity
             android:name="cn.czfy.zsfy.activity.YzmActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name="cn.czfy.zsfy.activity.LibrarySearchActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.LibraryActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.MessageActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.DetailBookActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.DangjiActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.DJDatiActivity" />
+        <activity android:name="cn.czfy.zsfy.activity.MsgDetailActivity" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

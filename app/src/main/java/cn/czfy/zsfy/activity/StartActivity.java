@@ -39,6 +39,7 @@ public class StartActivity extends Activity implements SplashADListener {
             fetchSplashAD(this, container, null, "1105409129", "4010723087987612", this, 0);
         } catch (Exception e) {
             e.printStackTrace();
+            next();
         }
         //noguanggao();
         if (!sp.getString("fzvip", "0").equals("1")) {

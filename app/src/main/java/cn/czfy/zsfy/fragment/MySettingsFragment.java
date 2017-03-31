@@ -221,31 +221,7 @@ public class MySettingsFragment extends Fragment {
 		super.onResume();
 	//	getFocus();
 	}
-//	private void getFocus() {
-//		getView().setFocusableInTouchMode(true);
-//		getView().requestFocus();
-//		getView().setOnKeyListener(new View.OnKeyListener() {
-//
-//			@Override
-//			public boolean onKey(View v, int keyCode, KeyEvent event) {
-//				// TODO Auto-generated method stub
-//				if (event.getAction() == KeyEvent.ACTION_UP
-//						&& keyCode == KeyEvent.KEYCODE_BACK) {
-//					// 监听到返回按钮点击事件
-//					Fragment newContent = null;
-//					String title = null;
-////					System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
-////					Toast.makeText(AboutFragment.this.getActivity(), "返回", 0).show();
-//					newContent = new HomeFragment();
-//					title = getString(R.string.home);
-//					switchFragment(newContent, title);
-//					return true;
-//				}
-//				return false;
-//
-//			}
-//		});
-//	}
+
 //	private void switchFragment(Fragment fragment, String title) {
 //		if (getActivity() == null) {
 //			return;

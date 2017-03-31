@@ -1,12 +1,10 @@
 package cn.czfy.zsfy.activity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -22,7 +20,7 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.dao.Message;
 import cn.czfy.zsfy.db.dao.StudentDao;
 
-public class MessageActivity extends Activity {
+public class MessageActivity extends BaseActivity {
 
 	private TextView tv_top_text;
 	private ImageView bt_top_return;
@@ -36,21 +34,10 @@ public class MessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.message);
-
+		showBackBtn();
+		showTitle("消息",null);
 		dao=new StudentDao(this);
 		infos=dao.findMsg();
-		tv_top_text=(TextView) findViewById(R.id.tv_top_lib);
-		tv_top_text.setText("消息");
-		bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-		bt_top_return.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				finish();
-			}
-		});
 		lv_msg=(ListView) findViewById(R.id.lv_msg);
 		lv_msg.setAdapter(new myAdapter());
 		lv_msg.setOnItemClickListener(new OnItemClickListener() {// 点击事件
