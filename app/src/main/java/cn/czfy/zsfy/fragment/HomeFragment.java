@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase;
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshListFragment;
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshListView;
-
-import java.util.Arrays;
-import java.util.LinkedList;
 
 
 public class HomeFragment extends PullToRefreshListFragment {
@@ -29,6 +29,12 @@ public class HomeFragment extends PullToRefreshListFragment {
     public static HomeFragment newInstance(String content) {
         HomeFragment fragment = new HomeFragment();
         return fragment;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

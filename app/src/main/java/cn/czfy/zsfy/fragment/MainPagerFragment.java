@@ -53,13 +53,16 @@ public class MainPagerFragment extends Fragment {
             if (position == 0) {
                 return new DemoPtrFragment();
             }
-            if (position == 1) {
+            else if (position == 1) {
                 return new BufferKnifeFragment();
             }
-            if (position == 2) {
-                return new BufferKnifeFragment();
+            else if (position == 2) {
+                return new QueryzaocaoFragment();
             }
-            return HomeFragment.newInstance(URLS[position % URLS.length]);
+            else if (position==3){
+                return new ChengjiFragment();
+            }
+            return null;
         }
 
         @Override

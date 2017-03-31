@@ -8,6 +8,12 @@
 	<dimen name="navigation_drawer_width">240dp</dimen>
 
 
+
+	<dimen name="shadow_width">15dp</dimen>
+	<dimen name="slidingmenu_offset">150dp</dimen>
+	<dimen name="base_action_bar_height">48.0dip</dimen>
+	<dimen name="base_edit_height">40.0dip</dimen>
+	<dimen name="list_item_height">120dip</dimen>
 	<!-- UI统一设置 -->
 	<dimen name="title_height">48.0dip</dimen>
 	<dimen name="title_btn_width">50.0dip</dimen>

@@ -4,12 +4,15 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
-import cn.czfy.zsfy.common.AppManager;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
 import cn.czfy.zsfy.R;
+import cn.czfy.zsfy.common.AppManager;
 
 public class BaseFragmentActivity extends FragmentActivity {
 
@@ -35,7 +38,15 @@ public class BaseFragmentActivity extends FragmentActivity {
         // 结束Activity从堆栈中移除
         AppManager.getAppManager().finishActivity(this);
     }
+    public void showTitleRightBtnWithText(String text, View.OnClickListener clickListener) {
+        TextView Right_tv = (TextView) findViewById(R.id.Right_tv);
+        Right_tv.setVisibility(View.VISIBLE);
+        Right_tv.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        Right_tv.setText(text);
+        Right_tv.setBackgroundDrawable(null);
+        Right_tv.setOnClickListener(clickListener);
 
+    }
     @TargetApi(19)
     protected void setTranslucentStatus() {
         Window window = getWindow();

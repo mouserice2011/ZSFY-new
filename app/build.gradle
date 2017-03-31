@@ -18,6 +18,8 @@ packer {
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
+    useLibrary 'org.apache.http.legacy'
+    android { compileOptions.encoding = "GBK" }
     defaultConfig {
         // Warning:Renderscript support mode is not currently supported with renderscript target 21+
         renderscriptTargetApi 20
@@ -30,25 +32,13 @@ android {
         versionName "1.0"
     }
     signingConfigs {
-        release {
-            keyAlias 'AndroidFine'
-            keyPassword '11118888'
-            storeFile file('keystore/release.jks')
-            storePassword '11118888'
-        }
-        debug {
-            keyAlias 'debug'
-            keyPassword '11118888'
-            storeFile file('keystore/debug.jks')
-            storePassword '11118888'
-        }
+
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false
@@ -60,6 +50,10 @@ android {
         main() {
             jniLibs.srcDirs = ['libs']
         }
+    }
+    dexOptions {
+        preDexLibraries = false
+        incremental false
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -83,10 +77,16 @@ android {
         exclude 'lib/x86/librsjni.so'
         exclude 'lib/x86/libRSSupport.so'
     }
+    compileOptions {
+        sourceCompatibility 7
+        targetCompatibility 7
+    }
 }
-
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -97,5 +97,9 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.10'
     //debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
     //releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
-    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile files('src/main/libs/bmob_v3.1.1beta.jar')
+    compile files('src/main/libs/httpclient-4.5.2.jar')
+    compile files('src/main/libs/jsoup-1.9.2.jar')
+    compile files('src/main/libs/GDTUnionSDK.4.9.543.min.jar')
 }

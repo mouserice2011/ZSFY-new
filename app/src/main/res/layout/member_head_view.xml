@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="150dp">
 
-    <ImageView
+    <cn.czfy.zsfy.view.CircleImageView
         android:id="@+id/iv_user_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_img_user_default" />
 
@@ -19,19 +19,23 @@
         android:layout_below="@id/iv_user_head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
-        android:text="13521468432"
-        android:textColor="@color/text_color_white"
-        android:textSize="16sp" />
+        android:text="沈新宇"
+        android:visibility="gone"
+        android:textColor="@color/orange"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/ll_action_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="@color/transparent_half"
         android:divider="@drawable/ic_img_line_v"
         android:dividerPadding="16dp"
-        android:showDividers="middle">
+        android:visibility="gone"
+        android:showDividers="middle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/tv_register"
@@ -41,7 +45,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="13dp"
-            android:text="注册"
+            android:text="换号"
             android:textColor="@color/text_color_white"
             android:textSize="16sp" />
 
