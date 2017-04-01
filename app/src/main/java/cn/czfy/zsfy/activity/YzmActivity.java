@@ -1,6 +1,5 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,7 +34,7 @@ import cn.czfy.zsfy.http.SetUser;
 import cn.czfy.zsfy.http.TeacherLogin;
 import cn.czfy.zsfy.tool.MyConstants;
 
-public class YzmActivity extends Activity {
+public class YzmActivity extends BaseActivity {
     private ImageView img_yzm;
     private TextView txt_yzm;
     private ProgressDialog pd;
@@ -70,17 +69,8 @@ public class YzmActivity extends Activity {
     }
 
     private void initview() {
-        TextView tv_top_text = (TextView) findViewById(R.id.tv_top_lib);
-        tv_top_text.setText("输入验证码");
-        ImageView bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-        bt_top_return.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                finish();
-            }
-        });
+        showBackBtn();
+        showTitle("输入验证码",null);
     }
 
     String loginType;

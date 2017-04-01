@@ -21,6 +21,7 @@ import java.io.File;
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.AboutActivity;
 import cn.czfy.zsfy.activity.MessageActivity;
+import cn.czfy.zsfy.activity.PerInfoActivity;
 import cn.czfy.zsfy.tool.FeedbackDialog;
 import cn.czfy.zsfy.tool.checkUpdateAPK;
 import cn.czfy.zsfy.ui.UIHelper;
@@ -109,7 +110,7 @@ public class MemberFragment extends Fragment {
         scrollView.getPullRootView().findViewById(R.id.tv_per_detail).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(MemberFragment.this.getActivity(), PerInfoActivity.class));
             }
         });
         scrollView.getPullRootView().findViewById(R.id.tv_msg).setOnClickListener(new View.OnClickListener() {
@@ -221,9 +222,8 @@ public class MemberFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-//                Fragment newContent = new PerInfoFragment();
-//                String title = getString(R.string.perinfo);
-//                switchFragment(newContent, title);
+                startActivity(new Intent(MemberFragment.this.getActivity(), PerInfoActivity.class));
+
             }
         });
     }

@@ -33,11 +33,10 @@ public class BaseActivity extends Activity {
         toast.show();
     }
     public void showTitleLeftBtnWithText(String resource, View.OnClickListener clickListener) {
-        Button Right_tv = (Button) findViewById(R.id.btnBack);
-        Right_tv.setVisibility(View.VISIBLE);
-        Right_tv.setText(resource);
-        Right_tv.setOnClickListener(clickListener);
-
+        TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
+        Left_tv.setVisibility(View.VISIBLE);
+        Left_tv.setText(resource);
+        Left_tv.setOnClickListener(clickListener);
     }
     public void showBackBtn() {
         Button btn = (Button) findViewById(R.id.btnBack);

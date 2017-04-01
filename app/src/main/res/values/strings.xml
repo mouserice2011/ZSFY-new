@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">掌上大学-FY</string>
+    <string name="app_name">掌上大学-FY</string>
 
-	<string name="clear_cache_menu">Clear Caches</string>
-	<string name="clear_cache_complete_toast">Caches have been cleared</string>
-	<string name="imageview_description">Image Thumbnail</string>
-	<string name="no_network_connection_toast">No network connection found</string>
+    <string name="clear_cache_menu">Clear Caches</string>
+    <string name="clear_cache_complete_toast">Caches have been cleared</string>
+    <string name="imageview_description">Image Thumbnail</string>
+    <string name="no_network_connection_toast">No network connection found</string>
 
-	<!-- 页面名称 -->
-	<string name="main_navigation_home">首页</string>
-	<string name="main_navigation_im">课程表</string>
-	<string name="main_navigation_interest">图书馆</string>
-	<string name="main_navigation_user">我的</string>
+    <!-- 页面名称 -->
+    <string name="main_navigation_home">首页</string>
+    <string name="main_navigation_im">课程表</string>
+    <string name="main_navigation_interest">图书馆</string>
+    <string name="main_navigation_user">我的</string>
 
-	<string name="market_info_title">大盘行情   dds</string>
+    <string name="market_info_title">大盘行情   dds</string>
 
-	<string name="progress_loading">加载中，请稍候</string>
-	<string name="progress_load_error">加载失败，点击屏幕刷新</string>
-	<string name="progress_load_no_data">暂无数据</string>
+    <string name="progress_loading">加载中，请稍候</string>
+    <string name="progress_load_error">加载失败，点击屏幕刷新</string>
+    <string name="progress_load_no_data">暂无数据</string>
 
-	<!-- 手势密码 -->
-	<string name="string_security_setting">安全设置</string>
-	<string name="string_gesture_password">手势密码</string>
-	<string name="string_modify_gesture_password">修改手势密码</string>
-	<string name="string_set_gesture_password">设置手势密码</string>
-	<string name="string_guide_info">您可以创建一个</string>
-	<string name="string_guide_info_right">手势密码图案</string>
-	<string name="string_guide_info_last">使用手势密码进行登录，安全、便捷</string>
+    <!-- 手势密码 -->
+    <string name="string_security_setting">安全设置</string>
+    <string name="string_gesture_password">手势密码</string>
+    <string name="string_modify_gesture_password">修改手势密码</string>
+    <string name="string_set_gesture_password">设置手势密码</string>
+    <string name="string_guide_info">您可以创建一个</string>
+    <string name="string_guide_info_right">手势密码图案</string>
+    <string name="string_guide_info_last">使用手势密码进行登录，安全、便捷</string>
 
-	<string name="retry_gesture">重新绘制解锁图案</string>
-	<string name="draw_gesture">绘制解锁图案</string>
-	<string name="draw_gesture_again">再次输入手势密码</string>
-	<string name="draw_gesture_not_same">与上次绘制不一致，请重新绘制</string>
-	<string name="gesture_login_five_failed">登录错误过多，账号被注销</string>
-	<string name="draw_gesture_need_six_dot">至少连接六个点，请重新绘制</string>
-	<string name="draw_gesture_left_chances">输入手势密码错误，还有%s次机会</string>
-	<string name="forget_gesture_need_login">忘记手势密码，需重新登录</string>
-	<string name="draw_gesture_error_clear_login">输入手势密码错误5次，登录状态已清除</string>
-	<string name="set_complete">设置成功</string>
-	<string name="forget_gesture">忘记手势密码</string>
-	<string name="empty"></string>
-	<string name="url_server">http://202.119.168.66:8080/test/version.xml</string>
-	<string name="mon">周一</string>
-	<string name="tue">周二</string>
-	<string name="wen">周三</string>
-	<string name="thu">周四</string>
-	<string name="fri">周五</string>
-	<string name="sta">周六</string>
-	<string name="sun">周日</string>
-	<string name="pull_to_refresh">下拉可以刷新</string>
-	<string name="release_to_refresh">释放立即刷新</string>
-	<string name="refreshing">正在刷新…</string>
-	<string name="not_updated_yet">暂未更新过</string>
-	<string name="updated_at">上次更新于%1$s前</string>
-	<string name="updated_just_now">刚刚更新</string>
-	<string name="time_error">时间有问题</string>
+    <string name="retry_gesture">重新绘制解锁图案</string>
+    <string name="draw_gesture">绘制解锁图案</string>
+    <string name="draw_gesture_again">再次输入手势密码</string>
+    <string name="draw_gesture_not_same">与上次绘制不一致，请重新绘制</string>
+    <string name="gesture_login_five_failed">登录错误过多，账号被注销</string>
+    <string name="draw_gesture_need_six_dot">至少连接六个点，请重新绘制</string>
+    <string name="draw_gesture_left_chances">输入手势密码错误，还有%s次机会</string>
+    <string name="forget_gesture_need_login">忘记手势密码，需重新登录</string>
+    <string name="draw_gesture_error_clear_login">输入手势密码错误5次，登录状态已清除</string>
+    <string name="set_complete">设置成功</string>
+    <string name="forget_gesture">忘记手势密码</string>
+    <string name="empty"></string>
+    <string name="url_server">http://202.119.168.66:8080/test/version.xml</string>
+    <string name="mon">周一</string>
+    <string name="tue">周二</string>
+    <string name="wen">周三</string>
+    <string name="thu">周四</string>
+    <string name="fri">周五</string>
+    <string name="sta">周六</string>
+    <string name="sun">周日</string>
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
 
 
-	<string name="lost">遗失</string>
-	<string name="found">招领</string>
-	<string name="message_search_hint">搜索&#8230;</string>
+    <string name="lost">遗失</string>
+    <string name="found">招领</string>
+    <string name="message_search_hint">搜索&#8230;</string>
 
-	<string name="list_no_data_lost">暂时还未有失物信息</string>
-	<string name="list_no_data_found">暂时还未有招领信息</string>
+    <string name="list_no_data_lost">暂时还未有失物信息</string>
+    <string name="list_no_data_found">暂时还未有招领信息</string>
 
-	<string name="title_hint">标题</string>
-	<string name="describe_hint">描述</string>
-	<string name="photo_hint">手机</string>
+    <string name="title_hint">标题</string>
+    <string name="describe_hint">描述</string>
+    <string name="photo_hint">手机</string>
 
-	<string name="planet_prompt">Choose a planet</string>
+    <string name="planet_prompt">Choose a planet</string>
 
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
-	<string name="title_activity_start">StartActivity</string>
-	<string name="title_activity_yzm">YzmActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_yzm">YzmActivity</string>
 
 </resources>

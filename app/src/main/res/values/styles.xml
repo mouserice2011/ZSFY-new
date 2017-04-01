@@ -116,8 +116,8 @@
 
 
 	<style name="MenuPop" parent="@android:style/Animation">
-		<item name="android:windowEnterAnimation">@anim/scale_top_in</item>
-		<item name="android:windowExitAnimation">@anim/scale_top_out</item>
+		<item name="android:windowEnterAnimation">@anim/slide_left_in</item>
+		<item name="android:windowExitAnimation">@anim/slide_right_out</item>
 	</style>
 
 	<!--<style name="PopupAnimation" parent="@android:style/Animation">-->
@@ -136,13 +136,24 @@
 		-->
 		<item name="android:windowNoTitle">true</item>
 	</style>
+	<style name="my_anim" parent="@android:style/Animation.Activity" >
+		<!--以当前这个页面 T 为基准   A --> T --> B  -->
+		<!-- T 页面出现动画 -->
+		<item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+		<item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+		<item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+		<item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
 
+	</style>
 	<!-- Application theme. -->
 	<style name="AppTheme" parent="AppBaseTheme">
 		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
+		<!-- window动画 -->
+		<item name="android:windowAnimationStyle">@style/my_anim</item>
 		<item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
 		<item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator.Custom</item>
-		<item name="android:windowIsTranslucent">true</item>
+
+		<!--注释之后全局切换动画才实现<item name="android:windowIsTranslucent">true</item>-->
 		<!-- translucent system bars
 		<item name="android:windowTranslucentStatus">true</item>
 		<item name="android:windowTranslucentNavigation">true</item>
@@ -215,7 +226,7 @@
 	</style>
 
 	<style name="PopupAnimation" parent="android:Animation">
-		<item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
-		<item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+		<item name="android:windowEnterAnimation">@anim/slide_left_in</item>
+		<item name="android:windowExitAnimation">@anim/slide_left_out</item>
 	</style>
 </resources>

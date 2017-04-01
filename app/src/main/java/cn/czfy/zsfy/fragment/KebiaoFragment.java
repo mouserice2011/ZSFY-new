@@ -112,7 +112,7 @@ public class KebiaoFragment extends Fragment {
 	public  void showdia()
 	{
 		String str="  同学，你好！\n   为了不再出现分周导致的差错，课表分周显示功能限制发放中。" +
-				"如需开通请先核对自己个人课表无误，再通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一些时间。名额有限。";
+				"如需开通请先核对自己个人课表无误，再通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一段时间，后台会及时处理。";
 		CustomDialog.Builder builder = new CustomDialog.Builder(
 				KebiaoFragment.this.getActivity());
 		builder.setMessage(str);
@@ -1469,7 +1469,7 @@ public class KebiaoFragment extends Fragment {
 			// course_table_layout.addView(tx1);
 		} catch (Exception e) {
 			// TODO: handle exception
-			Toast.makeText(KebiaoFragment.this.getActivity(), "教务系统已关闭课表查询1", 1)
+			Toast.makeText(KebiaoFragment.this.getActivity(), "无数据", 1)
 					.show();
 		}
 		try {
@@ -1549,7 +1549,7 @@ public class KebiaoFragment extends Fragment {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			Toast.makeText(KebiaoFragment.this.getActivity(), "教务系统已关闭课表查询2", 1)
+			Toast.makeText(KebiaoFragment.this.getActivity(), "无数据", 1)
 					.show();
 		}
 	}

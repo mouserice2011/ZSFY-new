@@ -253,9 +253,7 @@ public class DJDatiActivity extends Activity {
 	            public void onClick(DialogInterface dialog, int which) {
 	                dialog.dismiss(); //关闭dialog  
 	                finish();
-					
-	                //Toast.makeText(PerInfoFragment.this.getActivity(), "确认" + which, Toast.LENGTH_SHORT).show();  
-	            }  
+				}
 	        });  
 	        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
 	            @Override

@@ -42,7 +42,7 @@ public class SplashActivity extends FragmentActivity {
             @Override
             public void run() {
                 if(firstTimeUse) {
-                    Animation fadeOut = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fadeout);
+                    Animation fadeOut = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.slide_left_in);
                     fadeOut.setFillAfter(true);
                     findViewById(R.id.guideImage).startAnimation(fadeOut);
                     initGuideGallery();
@@ -54,7 +54,7 @@ public class SplashActivity extends FragmentActivity {
     }
 
     private void initGuideGallery() {
-        final Animation fadeIn= AnimationUtils.loadAnimation(this, R.anim.fadein);
+        final Animation fadeIn= AnimationUtils.loadAnimation(this, R.anim.slide_left_out);
         btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,5 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -17,11 +16,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -36,7 +33,7 @@ import cn.czfy.zsfy.http.SetUser;
 import cn.czfy.zsfy.tool.HeadPortrait;
 import cn.czfy.zsfy.view.CircleImageView;
 
-public class SetPerinfoActivity extends Activity implements View.OnClickListener {
+public class SetPerinfoActivity extends BaseActivity implements View.OnClickListener {
 
     private RelativeLayout rl_touxiang;
     private EditText ed_name, ed_class,ed_email,ed_xibu;
@@ -52,6 +49,9 @@ public class SetPerinfoActivity extends Activity implements View.OnClickListener
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_set_perinfo);
         //Bmob.initialize(this, Constants.Bmob_APPID);
+        showBackBtn();
+        showTitle("编辑资料",null);
+
         initView();
         setintiData();
         editData();
@@ -97,17 +97,6 @@ public class SetPerinfoActivity extends Activity implements View.OnClickListener
         profile_image1 = (CircleImageView) findViewById(R.id.profile_image1);
         rb_boy = (RadioButton) findViewById(R.id.rb_boy);
         rb_girl = (RadioButton) findViewById(R.id.rb_girl);
-        TextView tv_top_text = (TextView) findViewById(R.id.tv_top_lib);
-        tv_top_text.setText("编辑资料");
-        ImageView bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-        bt_top_return.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                finish();
-            }
-        });
         rl_touxiang.setOnClickListener(this);
         btn_save.setOnClickListener(this);
         rg_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

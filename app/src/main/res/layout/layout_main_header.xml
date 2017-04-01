@@ -6,7 +6,16 @@
     android:background="@color/main_header_bg">
 
     <!-- 返回按钮 -->
-
+    <TextView
+        android:id="@+id/Left_tv"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="帮助"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white" />
     <Button
         android:id="@+id/btnBack"
         style="@style/title_base_button"

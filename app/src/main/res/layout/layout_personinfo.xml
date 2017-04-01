@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    <include layout="@layout/layout_main_header"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/perback"
         android:orientation="vertical" >
 
-        <com.fyzs.view.CircleImageView
+        <cn.czfy.zsfy.view.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image1"
             android:layout_width="100dp"
@@ -179,37 +179,13 @@
                     android:background="#dfdfdf" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="30dp"
-                android:background="#dfdfdf" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-                <LinearLayout
-                    android:id="@+id/lv_setperinfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/layout_selecter"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical" >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="编辑资料"
-                        android:textColor="#8470FF"
-                        android:textSize="20sp" />
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"

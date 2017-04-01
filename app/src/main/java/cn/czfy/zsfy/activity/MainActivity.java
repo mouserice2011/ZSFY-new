@@ -4,6 +4,7 @@ package cn.czfy.zsfy.activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,7 @@ import cn.czfy.zsfy.fragment.MemberFragment;
 import cn.czfy.zsfy.http.MessageHttp;
 import cn.czfy.zsfy.tool.CustomDialog;
 import cn.czfy.zsfy.tool.DateUtils;
+import cn.czfy.zsfy.tool.MyConstants;
 import cn.czfy.zsfy.tool.checkUpdateAPK;
 import cn.czfy.zsfy.ui.UIHelper;
 
@@ -133,6 +136,12 @@ public class MainActivity extends BaseFragmentActivity {
                         currIndex = 3;
                         setTitleMember();
                         String type="登录";
+                        showTitleLeftBtnWithText("帮助", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(MainActivity.this,HelpActivity.class));
+                            }
+                        });
                         String logintype=MainActivity.this.getSharedPreferences("StuData", 0).getString("logintype", "");
                         if (!(logintype.equals("")||logintype.equals("访客"))){
                             type="换号";
@@ -154,9 +163,12 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
     private void showFragment() {
-//        if (currIndex == 3) {
-//            UIHelper.showLogin(MainActivity.this);
-//        }
+        if (currIndex == 3) {
+            if (!this.getSharedPreferences(MyConstants.FIRST, 0).getBoolean(MyConstants.FIRST, false)){
+                UIHelper.showLogin(MainActivity.this);
+            }
+
+        }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = fragmentManager.findFragmentByTag(fragmentTags.get(currIndex));
@@ -192,7 +204,12 @@ public class MainActivity extends BaseFragmentActivity {
                 return null;
         }
     }
-
+    public void showTitleLeftBtnWithText(String resource, View.OnClickListener clickListener) {
+        TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
+        Left_tv.setVisibility(View.VISIBLE);
+        Left_tv.setText(resource);
+        Left_tv.setOnClickListener(clickListener);
+    }
     public void showTitleRightBtnWithText(String text, View.OnClickListener clickListener) {
         TextView Right_tv = (TextView) this.findViewById(R.id.Right_tv);
         Right_tv.setVisibility(View.VISIBLE);
@@ -203,14 +220,16 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
     private void setTitleKebiao() {
+        TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
+        Left_tv.setVisibility(View.GONE);
         Spinner head_sp = (Spinner) this.findViewById(R.id.head_sp);
         head_sp.setVisibility(View.VISIBLE);
         setSpinner(head_sp);
-
         TextView Right_tv = (TextView) this.findViewById(R.id.Right_tv);
         Right_tv.setVisibility(View.GONE);
         TextView textHeadTitle = (TextView) this.findViewById(R.id.textHeadTitle);
         textHeadTitle.setVisibility(View.GONE);
+
     }
 
     private void setTitleHome() {
@@ -218,6 +237,8 @@ public class MainActivity extends BaseFragmentActivity {
         Right_tv.setVisibility(View.GONE);
         Spinner head_sp = (Spinner) this.findViewById(R.id.head_sp);
         head_sp.setVisibility(View.GONE);
+        TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
+        Left_tv.setVisibility(View.GONE);
         TextView textHeadTitle = (TextView) this.findViewById(R.id.textHeadTitle);
         textHeadTitle.setVisibility(View.VISIBLE);
         textHeadTitle.setText("掌上大学-FY");
@@ -228,6 +249,8 @@ public class MainActivity extends BaseFragmentActivity {
         Right_tv.setVisibility(View.GONE);
         Spinner head_sp = (Spinner) this.findViewById(R.id.head_sp);
         head_sp.setVisibility(View.GONE);
+        TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
+        Left_tv.setVisibility(View.GONE);
         TextView textHeadTitle = (TextView) this.findViewById(R.id.textHeadTitle);
         textHeadTitle.setVisibility(View.VISIBLE);
         textHeadTitle.setText("馆藏查询");
@@ -354,11 +377,25 @@ public class MainActivity extends BaseFragmentActivity {
         int dangqianzhou = DateUtils.getWeek();
         SharedPreferences sp = this.getSharedPreferences("StuData", 0);
         SharedPreferences.Editor ed = sp.edit();
-        if (sp.getBoolean("FirFZ", true)) {
-            head_sp.setSelection(1);
-            ed.putBoolean("FirFZ", false);
+        String fzvip=sp.getString("fzvip","0");
+        if(!fzvip.equals("1"))
+        {
+            showTitleLeftBtnWithText("分周", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showdia();
+                }
+            });
         }
-        String fzvip = sp.getString("fzvip", "0");
+        if (sp.getBoolean("FirFZ", true)) {
+            if(!fzvip.equals("1"))
+            {
+                showdia();
+            }
+            ed.putBoolean("FirFZ", false);
+            ed.commit();
+        }
+
         Log.d(TAG, "onCreateView: " + fzvip);
         if (fzvip.equals("1")) {
             // 控制周次
@@ -402,5 +439,25 @@ public class MainActivity extends BaseFragmentActivity {
             }
         });
     }
-
+    public  void showdia()
+    {
+        String str="  同学，你好！\n   为了不再出现分周导致的差错，课表分周显示功能限制发放中。" +
+                "如需开通请先核对自己个人课表无误，再通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一段时间，后台会及时处理。";
+        CustomDialog.Builder builder = new CustomDialog.Builder(this);
+        builder.setMessage(str);
+        builder.setTitle("分周内测公告");
+        builder.setPositiveButton("确定并复制",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        dialog.dismiss();
+                        ClipboardManager cmb = (ClipboardManager)MainActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                        //cmb.setText("");
+                        cmb.setText("1341156974@qq.com");
+                        Toast.makeText(MainActivity.this , "复制账号成功", Toast.LENGTH_LONG).show();
+                        // 设置你的操作事项
+                    }
+                });
+        builder.create().show();
+    }
 }
