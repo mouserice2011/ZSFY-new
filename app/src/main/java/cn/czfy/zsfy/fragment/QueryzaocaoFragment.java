@@ -1,6 +1,7 @@
 package cn.czfy.zsfy.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,17 +9,14 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,19 +30,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import cn.czfy.zsfy.R;
+import cn.czfy.zsfy.activity.ImageGalleryActivity;
 import cn.czfy.zsfy.http.HttpPostConn;
 import cn.czfy.zsfy.http.QueryzaocaoHttp;
 import cn.czfy.zsfy.tool.DateUtils;
-import cn.czfy.zsfy.tool.MPagerAdapter;
 import cn.czfy.zsfy.tool.Utility;
 import cn.czfy.zsfy.tool.ZaocaoInfo;
+import cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager;
+import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
 
 public class QueryzaocaoFragment extends Fragment {
     private ListView lv_detail;
@@ -60,22 +60,31 @@ public class QueryzaocaoFragment extends Fragment {
     RelativeLayout bannerContainer;
     BannerView bv;
     private static final String LOG_TAG = "QueryzaocaoFragment";
-    private ImageHandler imghandler = new ImageHandler(new WeakReference<QueryzaocaoFragment>(this));
-    //private ViewPager viewPager;
     View view;
-    private List<ImageView> dots;
     private ImageView iv_detail;
+
+    AutoLoopViewPager pager;
+    CirclePageIndicator indicator;
+
+    private GalleryPagerAdapter galleryAdapter;
+    private int[] imageViewIds;
+    private List<String> imageList = new ArrayList<String>(Arrays.asList(
+            "http://202.119.168.66:8080/test/pic/daka_1.png",
+            "http://202.119.168.66:8080/test/pic/daka_2.png",
+            "http://202.119.168.66:8080/test/pic/daka_3.png"));
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_queryzaocao, container, false);
-        viewPager = (ViewPager) view.findViewById(R.id.main_viewpager);
-//        showViewpager();
         tv_name1 = (TextView)view.findViewById(R.id.tv_name1);
         tv_name2 = (TextView) view.findViewById(R.id.tv_name2);
         tv_name3 = (TextView) view.findViewById(R.id.tv_name3);
         lv_detail = (ListView) view.findViewById(R.id.lv_detail);
         ed_search = (EditText) view.findViewById(R.id.ed_lib_search);
         iv_detail= (ImageView) view.findViewById(R.id.iv_list);
+        pager= (AutoLoopViewPager) view.findViewById(R.id.pager);
+        indicator= (CirclePageIndicator) view.findViewById(R.id.indicator);
+
         infos = new ArrayList<>();
         myadapter = new Myadapter();
         lv_detail.setAdapter(myadapter);
@@ -148,12 +157,74 @@ public class QueryzaocaoFragment extends Fragment {
 
             }
         });
-        
+        initpagerView();
         return view;
         
     }
+    void initpagerView() {
 
-   
+        imageViewIds = new int[] { R.drawable.czfylib, R.drawable.advertisement, R.drawable.czfylib};
+
+        galleryAdapter = new GalleryPagerAdapter();
+        pager.setAdapter(galleryAdapter);
+        indicator.setViewPager(pager);
+        indicator.setPadding(5, 5, 10, 5);
+    }
+    //轮播图适配器
+    public class GalleryPagerAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return imageViewIds.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView item = new ImageView(QueryzaocaoFragment.this.getActivity());
+            item.setImageResource(imageViewIds[position]);
+            Utility tool= new Utility();
+            tool.setPicture(imageList.get(position),item);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(-1, -1);
+            item.setLayoutParams(params);
+            item.setScaleType(ImageView.ScaleType.FIT_XY);
+            container.addView(item);
+
+            final int pos = position;
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(QueryzaocaoFragment.this.getActivity(), ImageGalleryActivity.class);
+                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
+                    intent.putExtra("position", pos);
+                    startActivity(intent);
+                }
+            });
+
+            return item;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        pager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        pager.stopAutoScroll();
+    }
     public void detail() {
         infos.clear();
         final String str = ed_search.getText().toString().trim();
@@ -307,190 +378,6 @@ public class QueryzaocaoFragment extends Fragment {
             TextView tv3 = (TextView) view1.findViewById(R.id.tv_zaocao_cishu);
             tv3.setText(info.getTime());
             return view1;
-        }
-    }
-
-    private ViewPager viewPager;
-
-    public void showViewpager() {//显示viewpager
-        //初始化iewPager的内容
-        dots = new ArrayList<>();
-
-        LayoutInflater inflater = LayoutInflater.from(QueryzaocaoFragment.this.getActivity());
-        ImageView view1 = (ImageView) inflater.inflate(R.layout.viewpager_item, null);
-        ImageView view2 = (ImageView) inflater.inflate(R.layout.viewpager_item, null);
-        //ImageView view3 = (ImageView) inflater.inflate(R.layout.viewpager_item, null);
-        view1.setImageResource(R.drawable.czfylib);
-        view2.setImageResource(R.drawable.advertisement);
-        //载入广告
-        Utility tool= new Utility();
-        tool.getPicture("http://202.119.168.66:8080/test/yzm/advertisement_zaocao1.png",view2);
-        List<ImageView> views = new ArrayList<ImageView>();
-        views.add(view1);
-        views.add(view2);
-
-        final LinearLayout mNumLayout = (LinearLayout) view.findViewById(R.id.ll_pager_num);
-        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon_bot);
-        for (int i = 0; i < views.size(); i++) {
-            ImageView iv1 = new ImageView(this.getActivity());
-            iv1.setLayoutParams(new ViewGroup.LayoutParams(60,60));
-            iv1.setImageResource(R.drawable.icon_bot1);
-            iv1.setLeft(20);
-            dots.add(iv1);
-            mNumLayout.addView(iv1);
-        }
-        dots.get(0).setImageResource(R.drawable.icon_bot);
-        viewPager.setAdapter(new MPagerAdapter(views));
-        //handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
-        //handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                System.out.println("------------------------------"+position);
-                for (ImageView iv1 : dots) {
-                    iv1.setImageResource(R.drawable.icon_bot1);
-
-                }
-                dots.get(position).setImageResource(R.drawable.icon_bot);
-               //handler.sendMessage(Message.obtain(handler, ImageHandler.MSG_PAGE_CHANGED, position, 0));
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                switch (state) {
-                    case ViewPager.SCROLL_STATE_DRAGGING:
-                       // handler.sendEmptyMessage(ImageHandler.MSG_KEEP_SILENT);
-                        break;
-                    case ViewPager.SCROLL_STATE_IDLE:
-                        //handler.sendEmptyMessageDelayed(ImageHandler.MSG_UPDATE_IMAGE, ImageHandler.MSG_DELAY);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        viewPager.setCurrentItem(Integer.MAX_VALUE / 2);//默认在中间，使用户看不到边界
-        //开始轮播效果
-
-    }
-
-    private class ImageAdapter extends PagerAdapter {
-
-        private ArrayList<ImageView> viewlist;
-
-        public ImageAdapter(ArrayList<ImageView> viewlist) {
-            this.viewlist = viewlist;
-        }
-
-        @Override
-        public int getCount() {
-            //设置成最大，使用户看不到边界
-            return Integer.MAX_VALUE;
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == arg1;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position,
-                                Object object) {
-            //Warning：不要在这里调用removeView
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            //对ViewPager页号求模取出View列表中要显示的项
-            position %= viewlist.size();
-            if (position < 0) {
-                position = viewlist.size() + position;
-            }
-            ImageView view = viewlist.get(position);
-            //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
-            ViewParent vp = view.getParent();
-            if (vp != null) {
-                ViewGroup parent = (ViewGroup) vp;
-                parent.removeView(view);
-            }
-            container.addView(view);
-            //add listeners here if necessary
-            return view;
-        }
-    }
-
-    private static class ImageHandler extends Handler {
-
-        /**
-         * 请求更新显示的View。
-         */
-        protected static final int MSG_UPDATE_IMAGE = 1;
-        /**
-         * 请求暂停轮播。
-         */
-        protected static final int MSG_KEEP_SILENT = 2;
-        /**
-         * 请求恢复轮播。
-         */
-        protected static final int MSG_BREAK_SILENT = 3;
-        /**
-         * 记录最新的页号，当用户手动滑动时需要记录新页号，否则会使轮播的页面出错。
-         * 例如当前如果在第一页，本来准备播放的是第二页，而这时候用户滑动到了末页，
-         * 则应该播放的是第一页，如果继续按照原来的第二页播放，则逻辑上有问题。
-         */
-        protected static final int MSG_PAGE_CHANGED = 4;
-
-        //轮播间隔时间
-        protected static final long MSG_DELAY = 5000;
-        private static final String LOG_TAG = "sll";
-
-        //使用弱引用避免Handler泄露.这里的泛型参数可以不是Activity，也可以是Fragment等
-        private WeakReference<QueryzaocaoFragment> weakReference;
-        private int currentItem = 0;
-
-        protected ImageHandler(WeakReference<QueryzaocaoFragment> wk) {
-            weakReference = wk;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Log.d(LOG_TAG, "receive message " + msg.what);
-            QueryzaocaoFragment activity = weakReference.get();
-            if (activity == null) {
-                //Activity已经回收，无需再处理UI了
-                return;
-            }
-            //检查消息队列并移除未发送的消息，这主要是避免在复杂环境下消息出现重复等问题。
-            if (activity.imghandler.hasMessages(MSG_UPDATE_IMAGE)) {
-                activity.imghandler.removeMessages(MSG_UPDATE_IMAGE);
-            }
-            switch (msg.what) {
-                case MSG_UPDATE_IMAGE:
-                    currentItem++;
-
-                    activity.viewPager.setCurrentItem(currentItem);
-                    //准备下次播放
-                    activity.imghandler.sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
-                    break;
-                case MSG_KEEP_SILENT:
-                    //只要不发送消息就暂停了
-                    break;
-                case MSG_BREAK_SILENT:
-                    activity.imghandler.sendEmptyMessageDelayed(MSG_UPDATE_IMAGE, MSG_DELAY);
-                    break;
-                case MSG_PAGE_CHANGED:
-                    //记录当前的页号，避免播放的时候页面显示不正确。
-                    currentItem = msg.arg1;
-                    break;
-                default:
-                    break;
-            }
         }
     }
 

@@ -51,7 +51,7 @@ public class MainPagerFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new DemoPtrFragment();
+                return new HomeFragment();
             }
             else if (position == 1) {
                 return new BufferKnifeFragment();

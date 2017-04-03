@@ -1,16 +1,13 @@
 package cn.czfy.zsfy.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,10 +17,9 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.DJKnowledgeData;
 import cn.czfy.zsfy.db.dao.StudentDao;
 
-public class DangjiActivity extends Activity {
+public class DangjiActivity extends BaseActivity {
 
-	private TextView tv_top_text;
-	private ImageView bt_top_return;
+
 	private ListView lv_dj;
 	StudentDao dao;
 	List<DJKnowledgeData> infos;
@@ -35,18 +31,8 @@ public class DangjiActivity extends Activity {
 		
 		dao=new StudentDao(this);
 		infos=dao.findDJK();
-		tv_top_text=(TextView) findViewById(R.id.tv_top_lib);
-		tv_top_text.setText("党基学习");
-		bt_top_return = (ImageView) findViewById(R.id.bt_top_return);
-		bt_top_return.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				finish();
-			}
-		});
+		showBackBtn();
+		showTitle("党基学习",null);
 		lv_dj=(ListView) findViewById(R.id.lv_dj);
 		lv_dj.setAdapter(new myAdapter());
 		lv_dj.setOnItemClickListener(new OnItemClickListener() {// 点击事件

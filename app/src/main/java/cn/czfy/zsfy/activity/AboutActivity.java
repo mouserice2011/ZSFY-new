@@ -45,7 +45,7 @@ public class AboutActivity extends SwipeBackActivity {
 		showTitleRightBtnWithText("¥Ú…Õ", new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
+				startActivity(new Intent(AboutActivity.this,DashangActivity.class));
 			}
 		});
 	}

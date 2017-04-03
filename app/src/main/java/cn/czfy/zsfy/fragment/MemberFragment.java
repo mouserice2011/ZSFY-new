@@ -185,6 +185,12 @@ public class MemberFragment extends Fragment {
 //        scrollView.setHeaderLayoutParams(localObject);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initData();
+    }
+
     private void initData() {
         SharedPreferences sp = this.getActivity()
                 .getSharedPreferences("StuData", 0);

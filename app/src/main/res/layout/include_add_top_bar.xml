@@ -3,7 +3,7 @@
     android:id="@+id/layout_action"
     android:layout_width="match_parent"
     android:layout_height="@dimen/base_action_bar_height"
-    android:background="@color/light_blue"
+    android:background="@color/main_header_bg"
     android:orientation="vertical" >
 
     <Button
@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/back" />
+        android:background="@drawable/btn_back" />
 
     <TextView
         android:id="@+id/tv_add"
@@ -24,8 +24,8 @@
 
     <Button
         android:id="@+id/btn_true"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"

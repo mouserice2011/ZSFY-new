@@ -50,7 +50,7 @@
         android:layout_alignParentRight="true"
         style="@style/Smile.TextView._White"
         android:layout_below="@id/tv_describe"
-        android:background="@color/green"
+        android:background="#5cbe6c"
         android:text="138024249542"
         android:drawableLeft="@drawable/icon_photo" >
     </TextView>
