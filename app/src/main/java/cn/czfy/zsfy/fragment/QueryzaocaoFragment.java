@@ -344,8 +344,12 @@ public class QueryzaocaoFragment extends Fragment {
 
                 Toast.makeText(QueryzaocaoFragment.this.getActivity(), "网络请求超时", Toast.LENGTH_LONG).show();
             }else if (msg.what == 3){//广告
-                initBanner();
-                bv.loadAD();
+                try {
+                    initBanner();
+                    bv.loadAD();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     };

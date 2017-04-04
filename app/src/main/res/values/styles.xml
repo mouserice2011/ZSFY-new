@@ -186,7 +186,7 @@
 	</style>
 
 	<style name="main_footer_bar_radio" parent="footer_bar">
-		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingTop">8dp</item>
 		<item name="android:paddingBottom">5dp</item>
 		<item name="android:drawablePadding">3dp</item>
 		<item name="android:textSize">@dimen/text_size_11</item>

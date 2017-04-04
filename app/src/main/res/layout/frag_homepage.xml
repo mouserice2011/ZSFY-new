@@ -164,11 +164,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
                         android:layout_alignParentRight="true"
                         android:text="更多>"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
                 </RelativeLayout>
 
             </LinearLayout>

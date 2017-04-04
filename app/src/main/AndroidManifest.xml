@@ -85,7 +85,7 @@
         <activity android:name=".activity.PerInfoActivity" />
         <activity android:name=".activity.SetPerinfoActivity" />
         <activity android:name=".activity.HelpActivity" />
-        <activity android:name=".activity.DashangActivity"></activity>
+        <activity android:name=".activity.DashangActivity" />
         <activity
             android:name="com.bmob.lostfound.MainFoundActivity"
             android:label="@string/app_name"
@@ -95,6 +95,7 @@
             android:name="com.bmob.lostfound.AddActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.MyWebActivity"></activity>
     </application>
 
 </manifest>

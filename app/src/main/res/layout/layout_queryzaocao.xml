@@ -13,9 +13,10 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/layout_ent_gallery"
             android:layout_width="fill_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:background="@color/white">
 
             <cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager
@@ -39,6 +40,7 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
+            android:background="@color/white"
             android:paddingRight="10dp">
 
             <EditText
@@ -74,6 +76,8 @@
             android:layout_marginTop="10dp"></RelativeLayout>
 
         <LinearLayout
+
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -111,6 +115,8 @@
         </LinearLayout>
 
         <ListView
+
+            android:background="@color/white"
             android:id="@+id/lv_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></ListView>

@@ -139,7 +139,7 @@ public class MainActivity extends BaseFragmentActivity {
                         showTitleLeftBtnWithText("°ïÖú", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(MainActivity.this,HelpActivity.class));
+                                startActivity(new Intent(MainActivity.this,MyWebActivity.class).putExtra("url","http://app.sinyu1012.cn/help.html").putExtra("title","°ïÖú"));
                             }
                         });
                         String logintype=MainActivity.this.getSharedPreferences("StuData", 0).getString("logintype", "");

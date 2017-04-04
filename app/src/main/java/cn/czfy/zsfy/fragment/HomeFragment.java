@@ -34,6 +34,7 @@ import java.util.List;
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.DangjiActivity;
 import cn.czfy.zsfy.activity.ImageGalleryActivity;
+import cn.czfy.zsfy.activity.MyWebActivity;
 import cn.czfy.zsfy.activity.PerInfoActivity;
 import cn.czfy.zsfy.http.DJKnowledgeHttp;
 import cn.czfy.zsfy.tool.Utility;
@@ -51,10 +52,10 @@ public class HomeFragment extends Fragment {
     private Fragment mContent;
     private ImageView iv_home_touxiang;
     private int[] one = new int[]{
-            R.drawable.foundlost, R.drawable.knowledge_icon, R.drawable.home_wifi,
+            R.drawable.foundlost, R.drawable.knowledge_icon, R.drawable.home_xiaoweb,
             R.drawable.more};
     private String[] two = new String[]{"失物招领",
-            "党基学习","校园WIFI", "更多功能"};
+            "党基学习","校园官网", "更多功能"};
 
     private ProgressDialog pd;
 
@@ -135,7 +136,7 @@ public class HomeFragment extends Fragment {
 
                         break;
                     case 2:
-                        Toast.makeText(HomeFragment.this.getActivity(), "开发中，敬请期待！", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", "http://www.cztgi.edu.cn/").putExtra("title","常州纺院官网"));
                         break;
                     case 3:
                         Toast.makeText(HomeFragment.this.getActivity(), "开发中，敬请期待！", Toast.LENGTH_LONG).show();

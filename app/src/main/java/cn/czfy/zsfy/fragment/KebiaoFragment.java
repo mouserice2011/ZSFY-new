@@ -111,8 +111,8 @@ public class KebiaoFragment extends Fragment {
 	}
 	public  void showdia()
 	{
-		String str="  同学，你好！\n   为了不再出现分周导致的差错，课表分周显示功能限制发放中。" +
-				"如需开通请先核对自己个人课表无误，再通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一段时间，后台会及时处理。";
+		String str="  同学，你好！\n  课表分周显示功能限制开放中。" +
+				"如需开通请先通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一段时间，后台会及时处理。";
 		CustomDialog.Builder builder = new CustomDialog.Builder(
 				KebiaoFragment.this.getActivity());
 		builder.setMessage(str);

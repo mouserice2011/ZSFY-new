@@ -82,7 +82,7 @@ public class YzmActivity extends BaseActivity {
             Toast.makeText(this, "验证码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        pd = ProgressDialog.show(YzmActivity.this, "", "登录中，请稍后……");// 等待的对话框
+        pd = ProgressDialog.show(YzmActivity.this, "", "加载数据中，需要一些时间，请不要走开哦");// 等待的对话框
         SharedPreferences sp = this.getSharedPreferences("StuData", 0);
         final SharedPreferences.Editor et = sp.edit();
         final String xh=sp.getString("xh","");
