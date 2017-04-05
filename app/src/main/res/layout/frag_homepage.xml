@@ -76,14 +76,32 @@
                     android:layout_height="match_parent"
                     android:background="@color/blue_light"></LinearLayout>
 
-                <TextView
+                <RelativeLayout
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:text="好书推荐"
-                    android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="好书推荐"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_morebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:paddingRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:text="更多>"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -99,9 +117,11 @@
                 android:paddingTop="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_book"
                     android:layout_width="60dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/tushutuijian1" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bookrecom" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,6 +131,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_bookname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="平凡的世界"
@@ -118,6 +139,7 @@
                         android:textSize="17dp" />
 
                     <TextView
+                        android:id="@+id/tv_zuozhe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
@@ -125,7 +147,7 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/tv_tuijianyu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
@@ -154,21 +176,22 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
                         android:text="文章精选"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
                         android:paddingRight="10dp"
                         android:layout_alignParentRight="true"
                         android:text="更多>"
                         android:textColor="@color/white"
-                        android:textSize="12dp" />
+                        android:textSize="14dp" />
                 </RelativeLayout>
 
             </LinearLayout>

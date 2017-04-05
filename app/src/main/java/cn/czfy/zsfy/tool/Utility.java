@@ -135,5 +135,13 @@ public class Utility {
             ;
         }.start();
     }
-
+    public void setSearchBookLog(String bookname){
+//        OkHttpUtils
+//                .post()
+//                .url(url)
+//                .addParams("username", "hyman")
+//                .addParams("password", "123")
+//                .build()
+//                .execute(callback);
+    }
 }

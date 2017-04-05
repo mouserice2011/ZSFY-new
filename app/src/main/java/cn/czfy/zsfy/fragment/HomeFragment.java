@@ -25,8 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bmob.lostfound.MainFoundActivity;
+import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,12 +36,20 @@ import java.util.List;
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.DangjiActivity;
 import cn.czfy.zsfy.activity.ImageGalleryActivity;
+import cn.czfy.zsfy.activity.MoreArticleActivity;
 import cn.czfy.zsfy.activity.MyWebActivity;
 import cn.czfy.zsfy.activity.PerInfoActivity;
+import cn.czfy.zsfy.domain.BookRecommendBean;
 import cn.czfy.zsfy.http.DJKnowledgeHttp;
+import cn.czfy.zsfy.tool.SaveBookRecommend;
 import cn.czfy.zsfy.tool.Utility;
 import cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager;
 import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * @author sinyu
@@ -47,18 +57,18 @@ import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
  */
 public class HomeFragment extends Fragment {
     private GridView gv;
-    private TextView name;
+    private TextView name,tv_bookname,tv_zuozhe,tv_tuijianyu,tv_morebook;
     private MyAdapter adapter;
+    private ImageView iv_book;
     private Fragment mContent;
     private ImageView iv_home_touxiang;
     private int[] one = new int[]{
             R.drawable.foundlost, R.drawable.knowledge_icon, R.drawable.home_xiaoweb,
             R.drawable.more};
     private String[] two = new String[]{"失物招领",
-            "党基学习","校园官网", "更多功能"};
+            "党基学习", "校园官网", "更多功能"};
 
     private ProgressDialog pd;
-
     AutoLoopViewPager pager;
     CirclePageIndicator indicator;
 
@@ -83,14 +93,19 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_homepage, null);
         name = (TextView) view.findViewById(R.id.name);
+        iv_book= (ImageView) view.findViewById(R.id.iv_book);
+        tv_morebook= (TextView) view.findViewById(R.id.tv_morebook);
+        tv_bookname= (TextView) view.findViewById(R.id.tv_bookname);
+        tv_zuozhe= (TextView) view.findViewById(R.id.tv_zuozhe);
+        tv_tuijianyu= (TextView) view.findViewById(R.id.tv_tuijianyu);
         pager = (AutoLoopViewPager) view.findViewById(R.id.pager);
         indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
-        LinearLayout lay_book= (LinearLayout) view.findViewById(R.id.lay_book);
+        LinearLayout lay_book = (LinearLayout) view.findViewById(R.id.lay_book);
         lay_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utility tool=new Utility();
-                tool.searchBook(HomeFragment.this.getActivity(),"平凡的世界");
+                Utility tool = new Utility();
+                tool.searchBook(HomeFragment.this.getActivity(),tv_bookname.getText().toString());
             }
         });
 
@@ -136,7 +151,7 @@ public class HomeFragment extends Fragment {
 
                         break;
                     case 2:
-                        startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", "http://www.cztgi.edu.cn/").putExtra("title","常州纺院官网"));
+                        startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", "http://www.cztgi.edu.cn/").putExtra("title", "常州纺院官网"));
                         break;
                     case 3:
                         Toast.makeText(HomeFragment.this.getActivity(), "开发中，敬请期待！", Toast.LENGTH_LONG).show();
@@ -152,17 +167,55 @@ public class HomeFragment extends Fragment {
             }
         });
         initpagerView();
+        getBook();
         return view;
     }
 
-    void initpagerView() {
-
+    void initpagerView() {//轮播
         imageViewIds = new int[]{R.drawable.home_czfy, R.drawable.home_czfy, R.drawable.home_czfy};
-
         galleryAdapter = new GalleryPagerAdapter();
         pager.setAdapter(galleryAdapter);
         indicator.setViewPager(pager);
         indicator.setPadding(5, 5, 10, 5);
+    }
+
+    public void getBook() {
+        final Utility utility=new Utility();
+
+        //创建okHttpClient对象
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        //创建一个Request
+        final Request request = new Request.Builder()
+                .url("http://202.119.168.66:8080/test/BookRecommendServlet")
+                .build();
+        //new call
+        Call call = mOkHttpClient.newCall(request);
+        //请求加入调度
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //醉了 response.body().string()只能使用一次
+                tv_morebook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(HomeFragment.this.getActivity(), MoreArticleActivity.class).putExtra("title","书籍推荐"));
+                    }
+                });
+                Gson gson=new Gson();
+                BookRecommendBean bookRecommendBean=new BookRecommendBean();
+                bookRecommendBean=gson.fromJson(response.body().string().toString(),BookRecommendBean.class);
+                SaveBookRecommend.save(bookRecommendBean.getBooks());
+                utility.setPicture("http://202.119.168.66:8080/test/pic/book"+bookRecommendBean.getBooks().size()+".png",iv_book);
+                tv_bookname.setText(bookRecommendBean.getBooks().get(0).getBookname());
+                tv_zuozhe.setText("作者："+bookRecommendBean.getBooks().get(0).getBookname());
+                tv_tuijianyu.setText("推荐语："+bookRecommendBean.getBooks().get(0).getTuijianyu());
+            }
+        });
     }
 
     @Override

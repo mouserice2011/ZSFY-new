@@ -11,6 +11,7 @@ import cn.czfy.zsfy.activity.MainActivity;
 
 /**
  * 应用程序UI工具包：封装UI相关的一些操作
+ *
  */
 public class UIHelper {
 
