@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.ui.swipebacklayout.SwipeBackActivity;
 
 
 /**
@@ -16,7 +15,7 @@ import cn.czfy.zsfy.ui.swipebacklayout.SwipeBackActivity;
  * @author sinyu
  * @description 今日
  */
-public class AboutActivity extends SwipeBackActivity {
+public class AboutActivity extends BaseActivity {
 
 	private LinearLayout tv_per_share;
 

@@ -26,19 +26,19 @@ public class DongTaiFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dong_tai, container, false);
         bannerContainer = (RelativeLayout) view.findViewById(R.id.bannerContainer);
         //广告延时一秒
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Message msg=new Message();
-                msg.what=1;
-                myhandler.sendMessage(msg);
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Message msg=new Message();
+//                msg.what=1;
+//                myhandler.sendMessage(msg);
+//            }
+//        }).start();
         return view;
     }
 

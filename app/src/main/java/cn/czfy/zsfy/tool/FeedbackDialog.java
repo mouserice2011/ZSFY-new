@@ -48,7 +48,7 @@ public class FeedbackDialog extends Dialog {
 		/**
 		 * Set the Dialog message from resource
 		 *
-		 * @param title
+		 * @param
 		 * @return
 		 */
 		public Builder setMessage(int message) {
@@ -153,7 +153,7 @@ public class FeedbackDialog extends Dialog {
 											
 											FeedbackHttp.Back(ed_em.getText()
 													.toString()+sp1.getString("banji", "")+sp1.getString("name", ""), ed_con
-													.getText().toString(),
+													.getText().toString()+"-time:"+Utility.getnowTime(),
 													context);
 											super.run();
 										}

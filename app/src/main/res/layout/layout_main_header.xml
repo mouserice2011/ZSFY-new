@@ -32,7 +32,7 @@
         android:focusableInTouchMode="true"
         android:maxWidth="180dp"
         android:singleLine="true"
-        android:text="掌上大学-FY"
+        android:text="FY掌上大学"
         android:textColor="@color/text_color_white"
         android:textSize="@dimen/text_size_20"
         android:layout_centerVertical="true"

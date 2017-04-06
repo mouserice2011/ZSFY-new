@@ -8,8 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -18,9 +21,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import cn.czfy.zsfy.activity.LibraryActivity;
+import cn.czfy.zsfy.domain.ArticleWeixinBean;
+import cn.czfy.zsfy.domain.BookRecommendBean;
+import cn.czfy.zsfy.http.HttpPostConn;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by sinyu on 2017/3/25.
@@ -107,6 +120,8 @@ public class Utility {
     public void searchBook(Context context, final String str) {
        // final List<BookData> bd=new ArrayList<>();
         this.context=context;
+        String xh=context.getSharedPreferences("StuData",0).getString("xh","访客");
+        setSearchBookLog(xh,str);
         lib_intent = new Intent(context, LibraryActivity.class);
                 /* 显示ProgressDialog */
         lib_pd = ProgressDialog.show(context, "", "加载中，请稍后……");
@@ -135,13 +150,79 @@ public class Utility {
             ;
         }.start();
     }
-    public void setSearchBookLog(String bookname){
-//        OkHttpUtils
-//                .post()
-//                .url(url)
-//                .addParams("username", "hyman")
-//                .addParams("password", "123")
-//                .build()
-//                .execute(callback);
+    public static  void setSearchBookLog(final String xh,final String bookname) {
+        Log.d("setSearchBookLog", "setSearchBookLog: " + bookname);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String path = "http://202.119.168.66:8080/test/SearchBookLogServlet";
+                String data = "xh=" + xh + "&bookname=" + bookname + "&time=" + Utility.getnowTime();
+                String result = HttpPostConn.doPOST(path, data);
+            }
+        }).start();
+
+
+    }
+    public static String getnowTime(){
+        SimpleDateFormat formatter = new SimpleDateFormat(
+                "yyyy年MM月dd日HH:mm:ss");
+        Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
+        String time = formatter.format(curDate);
+        return time;
+    }
+
+    public static void getBookRem() {
+        final Utility utility=new Utility();
+        //创建okHttpClient对象
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        //创建一个Request
+        final Request request = new Request.Builder()
+                .url("http://202.119.168.66:8080/test/BookRecommendServlet")
+                .build();
+        //new call
+        Call call = mOkHttpClient.newCall(request);
+        //请求加入调度
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //醉了 response.body().string()只能使用一次
+                Gson gson=new Gson();
+                BookRecommendBean bookRecommendBean=new BookRecommendBean();
+                bookRecommendBean=gson.fromJson(response.body().string().toString(),BookRecommendBean.class);
+                SaveBookRecommend.save(bookRecommendBean.getBooks());
+           }
+        });
+    }
+    public static void getWeixinArticle() {//微信缓存
+        final Utility utility=new Utility();
+        //创建okHttpClient对象
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        //创建一个Request
+        final Request request = new Request.Builder()
+                .url("https://api.tianapi.com/wxnew/?key=2e31ce9b9f0ddd581df3157015bcadc8&num=20&rand=1")
+                .build();
+        //new call
+        Call call = mOkHttpClient.newCall(request);
+        //请求加入调度
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //醉了 response.body().string()只能使用一次
+                Gson gson=new Gson();
+                ArticleWeixinBean articleWeixinBean=new ArticleWeixinBean();
+                articleWeixinBean=gson.fromJson(response.body().string().toString(),ArticleWeixinBean.class);
+                SaveWeixinArticle.save(articleWeixinBean.getNewslist());
+            }
+        });
     }
 }

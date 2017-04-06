@@ -69,9 +69,9 @@ public class QueryzaocaoFragment extends Fragment {
     private GalleryPagerAdapter galleryAdapter;
     private int[] imageViewIds;
     private List<String> imageList = new ArrayList<String>(Arrays.asList(
-            "http://202.119.168.66:8080/test/pic/daka_1.png",
-            "http://202.119.168.66:8080/test/pic/daka_2.png",
-            "http://202.119.168.66:8080/test/pic/daka_3.png"));
+            "http://202.119.168.66:8080/test/pic/zaocao_1.png",
+            "http://202.119.168.66:8080/test/pic/zaocao_2.png",
+            "http://202.119.168.66:8080/test/pic/zaocao_3.png"));
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -163,7 +163,7 @@ public class QueryzaocaoFragment extends Fragment {
     }
     void initpagerView() {
 
-        imageViewIds = new int[] { R.drawable.czfylib, R.drawable.advertisement, R.drawable.czfylib};
+        imageViewIds = new int[] { R.drawable.zaocao_1, R.drawable.zaocao_2, R.drawable.zaocao_3};
 
         galleryAdapter = new GalleryPagerAdapter();
         pager.setAdapter(galleryAdapter);
@@ -265,7 +265,7 @@ public class QueryzaocaoFragment extends Fragment {
     }
 
     private void initBanner() {//广告
-        this.bv = new BannerView(QueryzaocaoFragment.this.getActivity(), ADSize.BANNER, "1105409129", "9060422047880836");
+        this.bv = new BannerView(QueryzaocaoFragment.this.getActivity(), ADSize.BANNER, "1105409129", "1030321136683684");
         // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
         // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
         bv.setRefresh(8);

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.http.BasicInfoHttp;
 import cn.czfy.zsfy.http.FZVipHttp;
+import cn.czfy.zsfy.tool.Utility;
 
 public class StartActivity extends Activity implements SplashADListener {
     private static final String TAG = "StartActivity";
@@ -35,23 +36,21 @@ public class StartActivity extends Activity implements SplashADListener {
         SharedPreferences sp = getSharedPreferences("StuData", 0);
         Log.d("start", "VIP" + sp.getString("fzvip", "0"));
         //splashHolder = (ImageView) findViewById(R.id.splash_holder);
+        //noguanggao();
+        if (!sp.getString("fzvip", "0").equals("1")) {
+            //不是VIP
+            FzvipYZ();
+            //showguanggao();
+        }
+        GetBI();
+        Utility.getBookRem();
+        Utility.getWeixinArticle();
         try {
             fetchSplashAD(this, container, null, "1105409129", "4010723087987612", this, 0);
         } catch (Exception e) {
             e.printStackTrace();
             next();
         }
-        //noguanggao();
-        if (!sp.getString("fzvip", "0").equals("1")) {
-            //不是VIP
-            FzvipYZ();
-            //showguanggao();
-        } else {
-
-
-        }
-        GetBI();
-
     }
 
     private void noguanggao() {//没有广告

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +25,7 @@ import cn.czfy.zsfy.activity.LibraryActivity;
 import cn.czfy.zsfy.tool.BookData;
 import cn.czfy.zsfy.tool.SaveBookData;
 import cn.czfy.zsfy.tool.SearchBook;
+import cn.czfy.zsfy.tool.Utility;
 
 /**
  * @author sinyu
@@ -101,13 +101,14 @@ public class LibraryFragment extends Fragment implements OnClickListener {
 
                 final String str = ed_search.getText().toString().trim();
                 if (str.isEmpty()) {
-                    Toast.makeText(LibraryFragment.this.getActivity(), "请输入检索词", 0).show();
+                    Toast.makeText(LibraryFragment.this.getActivity(), "请输入检索词", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 intent = new Intent(LibraryFragment.this.getActivity(), LibraryActivity.class);
                 /* 显示ProgressDialog */
                 pd = ProgressDialog.show(LibraryFragment.this.getActivity(), "", "加载中，请稍后……");
-
+                String xh=LibraryFragment.this.getActivity().getSharedPreferences("StuData",0).getString("xh","访客");
+                Utility.setSearchBookLog(xh,str);
                 new Thread() {
                     public void run() {
                         SearchBook s = new SearchBook();
@@ -199,7 +200,8 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         intent = new Intent(LibraryFragment.this.getActivity(), LibraryActivity.class);
         /* 显示ProgressDialog */
         pd = ProgressDialog.show(LibraryFragment.this.getActivity(), "", "加载中，请稍后……");
-
+        String xh=LibraryFragment.this.getActivity().getSharedPreferences("StuData",0).getString("xh","访客");
+        Utility.setSearchBookLog(xh,str1);
         new Thread() {
             public void run() {
                 SearchBook s = new SearchBook();

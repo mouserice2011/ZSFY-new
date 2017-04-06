@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:id="@+id/lay"
+        android:id="@+id/lay_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="10dp"
+        android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="5dp">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/iv_article"
             android:layout_width="60dp"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:scaleType="fitXY"
             android:src="@drawable/bookrecom" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -32,7 +34,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="平凡的世界"
+                android:text="孩子不爱学习，上课不注意听讲，怎么办？"
                 android:textColor="#000000"
                 android:textSize="17dp" />
 
@@ -41,16 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:text="作者：路遥"
+                android:text="公众号：亲子必读"
                 android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/tv_tuijianyu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:text="推荐语：平凡的世界里,自有不平凡的生命。(ง •̀_•́)ง"
-                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -215,7 +215,7 @@ public class SetPerinfoActivity extends BaseActivity implements View.OnClickList
         SharedPreferences sp = this.getSharedPreferences("StuData", 0);
         SetUser.AddUser(sp.getString("xh", ""), sp.getString("name", ""),
                 sp.getString("pwd", ""), sp.getString("banji", ""),
-                sp.getString("xibu", "") + "-"+sp.getString("logintype", "")+"-"+sp.getString("email",""), sp.getString("sex", ""), time + "信息修改成功2.2" + touxiangpath);
+                sp.getString("xibu", "") + "-"+sp.getString("logintype", "")+"-"+sp.getString("email",""), sp.getString("sex", ""), time + "信息修改成功3.0" + touxiangpath);
     }
 
     protected void showChoosePicDialog() {

@@ -103,16 +103,13 @@ public class MainActivity extends BaseFragmentActivity {
     }
 
     private void initView() {
-        tv_newmsg= (TextView) findViewById(R.id.textUnreadLabel);
+        tv_newmsg = (TextView) findViewById(R.id.textUnreadLabel);
         Boolean user_msg = setting.getBoolean("user_Msg", true);
-        if(!user_msg)
-        {
+        if (!user_msg) {
             //Toast.makeText(this, ""+user_msg, 0).show();
             System.out.println(user_msg);
             tv_newmsg.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             tv_newmsg.setVisibility(View.GONE);
         }
         group = (RadioGroup) findViewById(R.id.group);
@@ -135,16 +132,16 @@ public class MainActivity extends BaseFragmentActivity {
                     case R.id.main_footbar_user:
                         currIndex = 3;
                         setTitleMember();
-                        String type="登录";
+                        String type = "登录";
                         showTitleLeftBtnWithText("帮助", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                startActivity(new Intent(MainActivity.this,MyWebActivity.class).putExtra("url","http://app.sinyu1012.cn/help.html").putExtra("title","帮助"));
+                                startActivity(new Intent(MainActivity.this, MyWebActivity.class).putExtra("url", "http://app.sinyu1012.cn/help.html").putExtra("title", "帮助"));
                             }
                         });
-                        String logintype=MainActivity.this.getSharedPreferences("StuData", 0).getString("logintype", "");
-                        if (!(logintype.equals("")||logintype.equals("访客"))){
-                            type="换号";
+                        String logintype = MainActivity.this.getSharedPreferences("StuData", 0).getString("logintype", "");
+                        if (!(logintype.equals("") || logintype.equals("访客"))) {
+                            type = "换号";
                         }
                         showTitleRightBtnWithText(type, new View.OnClickListener() {
                             @Override
@@ -164,7 +161,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     private void showFragment() {
         if (currIndex == 3) {
-            if (!this.getSharedPreferences(MyConstants.FIRST, 0).getBoolean(MyConstants.FIRST, false)){
+            if (!this.getSharedPreferences(MyConstants.FIRST, 0).getBoolean(MyConstants.FIRST, false)) {
                 UIHelper.showLogin(MainActivity.this);
             }
 
@@ -204,12 +201,14 @@ public class MainActivity extends BaseFragmentActivity {
                 return null;
         }
     }
+
     public void showTitleLeftBtnWithText(String resource, View.OnClickListener clickListener) {
         TextView Left_tv = (TextView) findViewById(R.id.Left_tv);
         Left_tv.setVisibility(View.VISIBLE);
         Left_tv.setText(resource);
         Left_tv.setOnClickListener(clickListener);
     }
+
     public void showTitleRightBtnWithText(String text, View.OnClickListener clickListener) {
         TextView Right_tv = (TextView) this.findViewById(R.id.Right_tv);
         Right_tv.setVisibility(View.VISIBLE);
@@ -241,7 +240,7 @@ public class MainActivity extends BaseFragmentActivity {
         Left_tv.setVisibility(View.GONE);
         TextView textHeadTitle = (TextView) this.findViewById(R.id.textHeadTitle);
         textHeadTitle.setVisibility(View.VISIBLE);
-        textHeadTitle.setText("掌上大学-FY");
+        textHeadTitle.setText("FY掌上大学");
     }
 
     private void setTitleLibrary() {
@@ -270,57 +269,61 @@ public class MainActivity extends BaseFragmentActivity {
         new Thread() {
             @Override
             public void run() {
+                try {
+                    // TODO Auto-generated method stub
+                    String result = MessageHttp.Message();
+                    if (!result.equals("0")) {
+                        try {
+                            JSONArray jsarr = new JSONArray(result);
+                            List<cn.czfy.zsfy.db.dao.Message> infos = dao.findMsg();
+                            System.out.println(jsarr.length() + "----------" + infos.size());
+                            if (jsarr.length() != infos.size())//有更新
+                            {
+                                dao.clearMSG();
+                                Message msg = new Message();
+                                msg.what = 1;
+                                handler.sendMessage(msg);
+                                for (int i = 0; i < jsarr.length(); i++) {
+                                    JSONObject json = jsarr.getJSONObject(i);
+                                    String type = json.getString("type");
+                                    String title = json.getString("title");
+                                    String content = json.getString("content");
+                                    String time = json.getString("time");
+                                    dao.addMsg(type.trim(), title.trim(), content.trim(), time.trim());
+                                }
+                                JSONObject json = jsarr.getJSONObject(jsarr.length() - 1);
+                                Message msg1 = new Message();
+                                msg1.obj = json.getString("content");
+                                msg1.what = 2;
+                                handler.sendMessage(msg1);
 
-                // TODO Auto-generated method stub
-                String result = MessageHttp.Message();
-                if (!result.equals("0")) {
-                    try {
-                        JSONArray jsarr = new JSONArray(result);
-                        List<cn.czfy.zsfy.db.dao.Message> infos = dao.findMsg();
-                        System.out.println(jsarr.length() + "----------" + infos.size());
-                        if (jsarr.length() != infos.size())//有更新
-                        {
-                            dao.clearMSG();
-                            Message msg = new Message();
-                            msg.what = 1;
-                            handler.sendMessage(msg);
-                            for (int i = 0; i < jsarr.length(); i++) {
-                                JSONObject json = jsarr.getJSONObject(i);
-                                String type = json.getString("type");
-                                String title = json.getString("title");
-                                String content = json.getString("content");
-                                String time = json.getString("time");
-                                dao.addMsg(type.trim(), title.trim(), content.trim(), time.trim());
+
+                                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+                                PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+                                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                Notification notification = new NotificationCompat.Builder(MainActivity.this)
+                                        .setContentTitle("有新的消息")
+                                        .setContentText(json.getString("title"))
+                                        .setWhen(System.currentTimeMillis())
+                                        .setSmallIcon(R.drawable.czfy)
+                                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.czfy))
+                                        .setContentIntent(pi)
+                                        .setAutoCancel(true)
+                                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                                        .build();
+                                manager.notify(1, notification);
                             }
-                            JSONObject json = jsarr.getJSONObject(jsarr.length() - 1);
-                            Message msg1 = new Message();
-                            msg1.obj = json.getString("content");
-                            msg1.what = 2;
-                            handler.sendMessage(msg1);
 
-
-                            Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-                            PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
-                            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                            Notification notification = new NotificationCompat.Builder(MainActivity.this)
-                                    .setContentTitle("有新的消息")
-                                    .setContentText(json.getString("title"))
-                                    .setWhen(System.currentTimeMillis())
-                                    .setSmallIcon(R.drawable.czfy)
-                                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.czfy))
-                                    .setContentIntent(pi)
-                                    .setAutoCancel(true)
-                                    .setPriority(NotificationCompat.PRIORITY_MAX)
-                                    .build();
-                            manager.notify(1, notification);
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
                         }
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                    } else {
+                        //没有数据
                     }
-                } else {
-                    //没有数据
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }.start();
@@ -337,13 +340,13 @@ public class MainActivity extends BaseFragmentActivity {
                 et.commit();
                 tv_newmsg.setVisibility(View.VISIBLE);
 
-            }else if (msg.what == 2)  {
-                showdia("",msg.obj.toString());
+            } else if (msg.what == 2) {
+                showdia("", msg.obj.toString());
             }
         }
     };
-    public  void showdia(String title,String str)
-    {
+
+    public void showdia(String title, String str) {
         CustomDialog.Builder builder = new CustomDialog.Builder(MainActivity.this);
         builder.setMessage(str.trim());
         builder.setTitle("新消息");
@@ -357,6 +360,7 @@ public class MainActivity extends BaseFragmentActivity {
                 });
         builder.create().show();
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -377,9 +381,8 @@ public class MainActivity extends BaseFragmentActivity {
         int dangqianzhou = DateUtils.getWeek();
         SharedPreferences sp = this.getSharedPreferences("StuData", 0);
         SharedPreferences.Editor ed = sp.edit();
-        String fzvip=sp.getString("fzvip","0");
-        if(!fzvip.equals("1"))
-        {
+        String fzvip = sp.getString("fzvip", "0");
+        if (!fzvip.equals("1")) {
             showTitleLeftBtnWithText("分周", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -388,8 +391,7 @@ public class MainActivity extends BaseFragmentActivity {
             });
         }
         if (sp.getBoolean("FirFZ", true)) {
-            if(!fzvip.equals("1"))
-            {
+            if (!fzvip.equals("1")) {
                 showdia();
             }
             ed.putBoolean("FirFZ", false);
@@ -439,9 +441,9 @@ public class MainActivity extends BaseFragmentActivity {
             }
         });
     }
-    public  void showdia()
-    {
-        String str="  同学，你好！\n   为了不再出现分周导致的差错，课表分周显示功能限制发放中。" +
+
+    public void showdia() {
+        String str = "  同学，你好！\n   为了不再出现分周导致的差错，课表分周显示功能限制发放中。" +
                 "如需开通请先核对自己个人课表无误，再通过支付宝转账功能，转1元钱内测费到支付宝账号：1341156974@qq.com，并备注自己的学号，转账后请等待一段时间，后台会及时处理。";
         CustomDialog.Builder builder = new CustomDialog.Builder(this);
         builder.setMessage(str);
@@ -451,10 +453,10 @@ public class MainActivity extends BaseFragmentActivity {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         dialog.dismiss();
-                        ClipboardManager cmb = (ClipboardManager)MainActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipboardManager cmb = (ClipboardManager) MainActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
                         //cmb.setText("");
                         cmb.setText("1341156974@qq.com");
-                        Toast.makeText(MainActivity.this , "复制账号成功", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "复制账号成功", Toast.LENGTH_LONG).show();
                         // 设置你的操作事项
                     }
                 });

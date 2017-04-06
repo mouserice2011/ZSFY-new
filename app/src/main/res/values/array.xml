@@ -4,8 +4,8 @@
 	<string-array name="news_titles">
 		<item>首页</item>
 		<item>早操打卡</item>
-		<item>校园动态</item>
 		<item>成绩查询</item>
+		<!--<item>校园动态</item>-->
 	</string-array>
 
 </resources>

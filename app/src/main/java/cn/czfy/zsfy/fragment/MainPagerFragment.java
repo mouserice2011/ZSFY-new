@@ -10,13 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cn.czfy.zsfy.ui.tabstrip.PagerSlidingTabStrip;
 import cn.czfy.zsfy.R;
+import cn.czfy.zsfy.ui.tabstrip.PagerSlidingTabStrip;
 
 public class MainPagerFragment extends Fragment {
 
     private static String[] TITLES;
-    private static String[] URLS = new String[]{"", "", "", ""};
+    private static String[] URLS = new String[]{"", "", ""};//, ""
 
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
@@ -57,12 +57,10 @@ public class MainPagerFragment extends Fragment {
                 return new QueryzaocaoFragment();
             }
             else if (position == 2) {
-                return new DongTaiFragment();
-            }
-            else if (position==3){
                 return new ChengjiFragment();
             }
             return null;
+            //return null;
         }
 
         @Override

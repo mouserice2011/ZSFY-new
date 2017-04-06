@@ -1,5 +1,6 @@
 package cn.czfy.zsfy.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +13,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.domain.BookRecommendBean;
-import cn.czfy.zsfy.tool.SaveBookRecommend;
+import cn.czfy.zsfy.domain.ArticleWeixinBean;
+import cn.czfy.zsfy.tool.SaveWeixinArticle;
 import cn.czfy.zsfy.tool.Utility;
 
 public class MoreArticleActivity extends BaseActivity{
 
     private ListView listView;
-    private List<BookRecommendBean.Book> books;
-    int bookpngid;
-    MyBooksAdapter myBooksAdapter;
+    private List<ArticleWeixinBean.newsList> articles;
+    MyarticlesAdapter myarticlesAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_article);
-        books= SaveBookRecommend.books;
-        bookpngid=books.size();
+        articles= SaveWeixinArticle.articles;
         initview();
     }
 
@@ -35,21 +34,20 @@ public class MoreArticleActivity extends BaseActivity{
         showBackBtn();
         showTitle(this.getIntent().getStringExtra("title"),null);
         listView= (ListView) findViewById(R.id.list);
-        myBooksAdapter=new MyBooksAdapter();
-        listView.setAdapter(myBooksAdapter);
+        myarticlesAdapter=new MyarticlesAdapter();
+        listView.setAdapter(myarticlesAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Utility tool = new Utility();
-                tool.searchBook(MoreArticleActivity.this, books.get(i).getBookname());
-            }
+                startActivity(new Intent(MoreArticleActivity.this,MyWebActivity.class).putExtra("url",articles.get(i).getUrl()).putExtra("title",articles.get(i).getTitle()));
+          }
         });
     }
-    public class MyBooksAdapter extends BaseAdapter {
+    public class MyarticlesAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return books.size();
+            return articles.size();
         }
 
         @Override
@@ -65,17 +63,14 @@ public class MoreArticleActivity extends BaseActivity{
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View v=View.inflate(MoreArticleActivity.this,R.layout.list_article,null);
-            ImageView im= (ImageView) v.findViewById(R.id.img);
+            ImageView im= (ImageView) v.findViewById(R.id.iv_article);
             Utility tool=new Utility();
-            tool.setPicture("http://202.119.168.66:8080/test/pic/book"+bookpngid--+".png",im);
-            BookRecommendBean.Book book=books.get(i);
-            TextView tv_bookname= (TextView) v.findViewById(R.id.tv_name);
+            ArticleWeixinBean.newsList article=articles.get(i);
+            tool.setPicture(article.getPicUrl(),im);
+            TextView tv_articlename= (TextView) v.findViewById(R.id.tv_name);
             TextView tv_zuozhe= (TextView) v.findViewById(R.id.tv_zuozhe);
-            TextView tv_tuijianyu= (TextView) v.findViewById(R.id.tv_tuijianyu);
-            tv_bookname.setText(book.getZuozhe());
-            tv_bookname.setText(book.getBookname());
-            tv_zuozhe.setText("作者："+book.getZuozhe());
-            tv_tuijianyu.setText("推荐语："+book.getTuijianyu());
+            tv_articlename.setText(article.getTitle());
+            tv_zuozhe.setText("公众号："+article.getDescription());
             return v;
         }
     }

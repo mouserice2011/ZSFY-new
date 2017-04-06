@@ -7,17 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import cn.czfy.zsfy.ui.photoview.PhotoViewAdapter;
-import cn.czfy.zsfy.ui.swipebacklayout.SwipeBackActivity;
-import cn.czfy.zsfy.R;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.czfy.zsfy.R;
+import cn.czfy.zsfy.ui.photoview.PhotoViewAdapter;
 
 /**
  * Created by tiansj on 15/8/6.
  */
-public class ImageGalleryActivity extends SwipeBackActivity {
+public class ImageGalleryActivity extends BaseActivity {
 
     private int position;
     private List<String> imgUrls; //图片列表
@@ -33,6 +32,15 @@ public class ImageGalleryActivity extends SwipeBackActivity {
 
         Intent intent = getIntent();
         position = intent.getIntExtra("position", 0);
+        String type=intent.getStringExtra("type");
+        if (type.equals("imgs")){
+            showTitleRightBtnWithText("鸣谢", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+        }
         imgUrls = intent.getStringArrayListExtra("images");
         if(imgUrls == null) {
             imgUrls = new ArrayList<>();
