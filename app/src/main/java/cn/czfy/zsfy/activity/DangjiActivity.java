@@ -11,11 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.db.DJKnowledgeData;
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import java.util.List;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.db.DJKnowledgeData;
-import cn.czfy.zsfy.db.dao.StudentDao;
 
 public class DangjiActivity extends BaseActivity {
 

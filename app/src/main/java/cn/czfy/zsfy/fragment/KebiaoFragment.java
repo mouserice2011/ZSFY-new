@@ -27,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +36,6 @@ import java.util.List;
 
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.dao.Kebiao;
-import cn.czfy.zsfy.db.dao.StudentDao;
 import cn.czfy.zsfy.tool.ChengjiDialog;
 import cn.czfy.zsfy.tool.CustomDialog;
 import cn.czfy.zsfy.tool.DateUtils;

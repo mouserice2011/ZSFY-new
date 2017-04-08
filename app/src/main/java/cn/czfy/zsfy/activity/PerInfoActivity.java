@@ -24,15 +24,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.DownLoadManager;
+import cn.czfy.zsfy.tool.MyConstants;
+
 import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.tool.DownLoadManager;
+
 import cn.czfy.zsfy.tool.FeedbackDialog;
-import cn.czfy.zsfy.tool.MyConstants;
 import cn.czfy.zsfy.tool.UpdataInfo;
 import cn.czfy.zsfy.tool.UpdataInfoParser;
 import cn.czfy.zsfy.view.CircleImageView;

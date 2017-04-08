@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.ZaocaoInfo;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
@@ -42,7 +43,6 @@ import cn.czfy.zsfy.http.HttpPostConn;
 import cn.czfy.zsfy.http.QueryzaocaoHttp;
 import cn.czfy.zsfy.tool.DateUtils;
 import cn.czfy.zsfy.tool.Utility;
-import cn.czfy.zsfy.tool.ZaocaoInfo;
 import cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager;
 import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
 

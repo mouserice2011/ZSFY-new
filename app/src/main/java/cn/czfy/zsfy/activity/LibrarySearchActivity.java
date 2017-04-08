@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.BookData;
+
 import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
 import java.util.List;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.tool.BookData;
+
 import cn.czfy.zsfy.tool.SearchBook;
 
 public class LibrarySearchActivity extends Activity {

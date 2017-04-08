@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.domain.ArticleWeixinBean;
+
 import java.util.List;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.domain.ArticleWeixinBean;
+
 import cn.czfy.zsfy.tool.SaveWeixinArticle;
 import cn.czfy.zsfy.tool.Utility;
 

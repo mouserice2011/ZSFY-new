@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import cn.czfy.zsfy.activity.HouseDetailActivity;
 import cn.czfy.zsfy.activity.LoginActivity;
+import cn.czfy.zsfy.activity.HouseDetailActivity;
 import cn.czfy.zsfy.activity.MainActivity;
 
 /**
@@ -24,7 +24,7 @@ public class UIHelper {
         if(cont == null || msg == null) {
             return;
         }
-		Toast.makeText(cont, msg, Toast.LENGTH_SHORT).show();
+		Toast.makeText(cont, msg, Toast.LENGTH_LONG).show();
 	}
 
 	public static void ToastMessage(Context cont, int msg) {

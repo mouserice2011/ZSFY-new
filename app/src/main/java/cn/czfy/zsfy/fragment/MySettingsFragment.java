@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,13 +20,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.DownLoadManager;
+
 import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.tool.DownLoadManager;
+
 import cn.czfy.zsfy.tool.UpdataInfo;
 import cn.czfy.zsfy.tool.UpdataInfoParser;
 

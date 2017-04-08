@@ -21,6 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.HeadPortrait;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
@@ -28,10 +30,10 @@ import java.util.Date;
 
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UploadFileListener;
-import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.http.SetUser;
-import cn.czfy.zsfy.tool.HeadPortrait;
 import cn.czfy.zsfy.view.CircleImageView;
+
+import cn.czfy.zsfy.R;
 
 public class SetPerinfoActivity extends BaseActivity implements View.OnClickListener {
 

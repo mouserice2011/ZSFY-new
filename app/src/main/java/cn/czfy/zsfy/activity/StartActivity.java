@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
+import cn.czfy.zsfy.http.BasicInfoHttp;
+import cn.czfy.zsfy.http.FZVipHttp;
+import cn.czfy.zsfy.tool.Utility;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 
@@ -17,9 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.http.BasicInfoHttp;
-import cn.czfy.zsfy.http.FZVipHttp;
-import cn.czfy.zsfy.tool.Utility;
 
 public class StartActivity extends Activity implements SplashADListener {
     private static final String TAG = "StartActivity";

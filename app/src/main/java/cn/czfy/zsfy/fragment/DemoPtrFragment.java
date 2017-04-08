@@ -12,16 +12,17 @@ import android.widget.ListView;
 import com.alibaba.fastjson.JSONArray;
 import cn.czfy.zsfy.ui.quickadapter.QuickAdapter;
 import cn.czfy.zsfy.utils.DeviceUtil;
-import com.squareup.picasso.Picasso;
-import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.MainActivity;
 import cn.czfy.zsfy.http.HttpClient;
 import cn.czfy.zsfy.http.HttpResponseHandler;
 import cn.czfy.zsfy.http.RestApiResponse;
-import cn.czfy.zsfy.model.SearchParam;
 import cn.czfy.zsfy.model.SearchShop;
 import cn.czfy.zsfy.ui.UIHelper;
 import cn.czfy.zsfy.ui.loadmore.LoadMoreListView;
+import com.squareup.picasso.Picasso;
+import cn.czfy.zsfy.R;
+
+import cn.czfy.zsfy.model.SearchParam;
 import cn.czfy.zsfy.ui.quickadapter.BaseAdapterHelper;
 
 import java.util.List;

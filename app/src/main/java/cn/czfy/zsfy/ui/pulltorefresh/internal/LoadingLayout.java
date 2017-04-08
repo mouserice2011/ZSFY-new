@@ -37,6 +37,7 @@ import android.widget.TextView;
 
 import cn.czfy.zsfy.ui.pulltorefresh.ILoadingLayout;
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase;
+
 import cn.czfy.zsfy.R;
 
 @SuppressLint("ViewConstructor")

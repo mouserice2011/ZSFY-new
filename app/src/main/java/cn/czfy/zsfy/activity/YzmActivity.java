@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.http.TeacherLogin;
+import cn.czfy.zsfy.tool.MyConstants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,8 +34,6 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.http.FZVipHttp;
 import cn.czfy.zsfy.http.JwxtHttp;
 import cn.czfy.zsfy.http.SetUser;
-import cn.czfy.zsfy.http.TeacherLogin;
-import cn.czfy.zsfy.tool.MyConstants;
 
 public class YzmActivity extends BaseActivity {
     private ImageView img_yzm;

@@ -1,22 +1,19 @@
 
 package cn.czfy.zsfy.activity;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.AlertDialog;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -78,8 +75,59 @@ public class MainActivity extends BaseFragmentActivity {
         jianchaMsg();
         checkUpdateAPK checkUpdateAPK = new checkUpdateAPK(MainActivity.this);
         checkUpdateAPK.jianchagengxin();
+
+        String packageName = "com.czfy.zsfy";
+        Uninstall(packageName);
+    }
+    /**
+     * 卸载指定包名的应用
+     *
+     * @param packageName
+     */
+    private void Uninstall(final String packageName) {
+        if (checkApplication(packageName)) {
+            AlertDialog.Builder builer = new AlertDialog.Builder(this);
+            builer.setTitle("检查到旧版本");
+            builer.setMessage("你好！本次更新是全新更新，更换了包名，检查到您的手机中有旧版的掌上大学APP，建议卸载旧版本，是否卸载？");
+            // 当点确定按钮时从服务器上下载 新的apk 然后安装 ?
+            builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Uri packageURI = Uri.parse("package:" + packageName);
+                    Intent intent = new Intent(Intent.ACTION_DELETE);
+                    intent.setData(packageURI);
+                    startActivity(intent);
+                }
+            });
+            builer.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // TODO Auto-generated method stub
+                    // do sth
+                }
+            });
+            AlertDialog dialog = builer.create();
+            dialog.show();
+
+        }
     }
 
+    /**
+     * 判断该包名的应用是否安装
+     *
+     * @param packageName
+     * @return
+     */
+    public boolean checkApplication(String packageName) {
+        if (packageName == null || "".equals(packageName)) {
+            return false;
+        }
+        try {
+            getPackageManager().getApplicationInfo(packageName,
+                    PackageManager.GET_UNINSTALLED_PACKAGES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -296,22 +344,20 @@ public class MainActivity extends BaseFragmentActivity {
                                 msg1.obj = json.getString("content");
                                 msg1.what = 2;
                                 handler.sendMessage(msg1);
-
-
-                                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-                                PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
-                                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                Notification notification = new NotificationCompat.Builder(MainActivity.this)
-                                        .setContentTitle("有新的消息")
-                                        .setContentText(json.getString("title"))
-                                        .setWhen(System.currentTimeMillis())
-                                        .setSmallIcon(R.drawable.czfy)
-                                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.czfy))
-                                        .setContentIntent(pi)
-                                        .setAutoCancel(true)
-                                        .setPriority(NotificationCompat.PRIORITY_MAX)
-                                        .build();
-                                manager.notify(1, notification);
+//                                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+//                                PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+//                                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//                                Notification notification = new NotificationCompat.Builder(MainActivity.this)
+//                                        .setContentTitle("有新的消息")
+//                                        .setContentText(json.getString("title"))
+//                                        .setWhen(System.currentTimeMillis())
+//                                        .setSmallIcon(R.drawable.czfy)
+//                                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.czfy))
+//                                        .setContentIntent(pi)
+//                                        .setAutoCancel(true)
+//                                        .setPriority(NotificationCompat.PRIORITY_MAX)
+//                                        .build();
+//                                manager.notify(1, notification);
                             }
 
                         } catch (JSONException e) {
@@ -453,7 +499,7 @@ public class MainActivity extends BaseFragmentActivity {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         dialog.dismiss();
-                        ClipboardManager cmb = (ClipboardManager) MainActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipboardManager cmb = (ClipboardManager) MainActivity.this.getSystemService(CLIPBOARD_SERVICE);
                         //cmb.setText("");
                         cmb.setText("1341156974@qq.com");
                         Toast.makeText(MainActivity.this, "复制账号成功", Toast.LENGTH_LONG).show();

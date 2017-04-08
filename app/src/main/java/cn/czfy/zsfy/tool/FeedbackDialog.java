@@ -12,8 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.http.FeedbackHttp;
+
+import cn.czfy.zsfy.R;
 
 
 public class FeedbackDialog extends Dialog {

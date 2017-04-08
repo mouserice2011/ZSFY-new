@@ -19,7 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.fragment.MemberFragment;
 
 /**
  * Created by sinyu on 2017/3/31.

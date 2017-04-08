@@ -12,6 +12,7 @@ import java.util.List;
 
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.BaseActivity;
+import cn.czfy.zsfy.activity.MyWebActivity;
 import cn.czfy.zsfy.ui.photoview.PhotoViewAdapter;
 
 /**
@@ -38,7 +39,7 @@ public class ImageGallery2Activity extends BaseActivity {
             showTitleRightBtnWithText("鸣谢", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    startActivity(new Intent(ImageGallery2Activity.this, MyWebActivity.class).putExtra("url","http://app2.sinyu1012.cn/Thanks.html").putExtra("title","感谢你们的支持"));
                 }
             });
         }

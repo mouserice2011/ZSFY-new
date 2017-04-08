@@ -31,9 +31,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 
+import cn.czfy.zsfy.ui.pulltorefresh.internal.IndicatorLayout;
+
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.ui.pulltorefresh.internal.EmptyViewMethodAccessor;
-import cn.czfy.zsfy.ui.pulltorefresh.internal.IndicatorLayout;
 
 public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T> implements
         OnScrollListener {

@@ -6,11 +6,12 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.tool.BookData;
+import cn.czfy.zsfy.tool.SaveBookData;
+
 import java.util.List;
 
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.tool.BookData;
-import cn.czfy.zsfy.tool.SaveBookData;
 
 public class DetailBookActivity extends BaseActivity {
 

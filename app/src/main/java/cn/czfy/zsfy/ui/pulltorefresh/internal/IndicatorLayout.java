@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase;
+
 import cn.czfy.zsfy.R;
 
 @SuppressLint("ViewConstructor")

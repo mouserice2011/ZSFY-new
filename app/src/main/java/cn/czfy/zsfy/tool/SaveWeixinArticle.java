@@ -1,9 +1,9 @@
 package cn.czfy.zsfy.tool;
 
+import cn.czfy.zsfy.domain.ArticleWeixinBean;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.czfy.zsfy.domain.ArticleWeixinBean;
 
 /**
  * Created by sinyu on 2017/4/5. н╒пендуб╩╨╢Ф

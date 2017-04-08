@@ -1,9 +1,9 @@
 package cn.czfy.zsfy.tool;
 
+import cn.czfy.zsfy.domain.BookRecommendBean;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.czfy.zsfy.domain.BookRecommendBean;
 
 /**
  * Created by sinyu on 2017/4/4.

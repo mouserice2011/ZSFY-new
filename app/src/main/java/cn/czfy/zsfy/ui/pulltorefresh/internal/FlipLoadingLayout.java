@@ -25,9 +25,9 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
 
+import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase;
+
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase.Mode;
-import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase.Orientation;
 
 @SuppressLint("ViewConstructor")
 public class FlipLoadingLayout extends LoadingLayout {
@@ -36,10 +36,10 @@ public class FlipLoadingLayout extends LoadingLayout {
 
     private final Animation mRotateAnimation, mResetRotateAnimation;
 
-    public FlipLoadingLayout(Context context, final Mode mode, final Orientation scrollDirection, TypedArray attrs) {
+    public FlipLoadingLayout(Context context, final PullToRefreshBase.Mode mode, final PullToRefreshBase.Orientation scrollDirection, TypedArray attrs) {
         super(context, mode, scrollDirection, attrs);
 
-        final int rotateAngle = mode == Mode.PULL_FROM_START ? -180 : 180;
+        final int rotateAngle = mode == PullToRefreshBase.Mode.PULL_FROM_START ? -180 : 180;
 
         mRotateAnimation = new RotateAnimation(0, rotateAngle, Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
@@ -121,19 +121,19 @@ public class FlipLoadingLayout extends LoadingLayout {
     private float getDrawableRotationAngle() {
         float angle = 0f;
         switch (mMode) {
-            case PULL_FROM_END:
-                if (mScrollDirection == Orientation.HORIZONTAL) {
-                    angle = 90f;
-                } else {
-                    angle = 180f;
-                }
-                break;
-
-            case PULL_FROM_START:
-                if (mScrollDirection == Orientation.HORIZONTAL) {
-                    angle = 270f;
-                }
-                break;
+//            case PullToRefreshBase.Mode.PULL_FROM_END:
+//                if (mScrollDirection == PullToRefreshBase.Orientation.HORIZONTAL) {
+//                    angle = 90f;
+//                } else {
+//                    angle = 180f;
+//                }
+//                break;
+//
+//            case PullToRefreshBase.Mode.PULL_FROM_START:
+//                if (mScrollDirection == PullToRefreshBase.Orientation.HORIZONTAL) {
+//                    angle = 270f;
+//                }
+//                break;
 
             default:
                 break;

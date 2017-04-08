@@ -16,16 +16,17 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.activity.MessageActivity;
+import cn.czfy.zsfy.activity.PerInfoActivity;
+import cn.czfy.zsfy.tool.checkUpdateAPK;
+import cn.czfy.zsfy.ui.UIHelper;
+import cn.czfy.zsfy.ui.pulltozoomview.PullToZoomScrollViewEx;
+
 import java.io.File;
 
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.AboutActivity;
-import cn.czfy.zsfy.activity.MessageActivity;
-import cn.czfy.zsfy.activity.PerInfoActivity;
 import cn.czfy.zsfy.tool.FeedbackDialog;
-import cn.czfy.zsfy.tool.checkUpdateAPK;
-import cn.czfy.zsfy.ui.UIHelper;
-import cn.czfy.zsfy.ui.pulltozoomview.PullToZoomScrollViewEx;
 import cn.czfy.zsfy.view.CircleImageView;
 
 public class MemberFragment extends Fragment {

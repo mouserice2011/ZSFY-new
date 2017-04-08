@@ -159,12 +159,12 @@ public class HomeFragment extends Fragment {
                     case 3:
                          List<String> imageList = new ArrayList<String>();
                         String src="http://app2.sinyu1012.cn/img/img (";
-                        for(int i=1;i<35;i++){
+                        for(int i=1;i<=40;i++){
                             imageList.add(src+i+").jpg");
                         }
                         Intent intent3 = new Intent(HomeFragment.this.getActivity(), ImageGallery2Activity.class);
                         intent3.putStringArrayListExtra("images", (ArrayList<String>) imageList);
-                        UIHelper.ToastMessage(HomeFragment.this.getActivity(),"流量少请切换至WIFI查看");
+                        UIHelper.ToastMessage(HomeFragment.this.getActivity(),"多图，建议在WIFI下查看");
                         intent3.putExtra("position", 0);
                         intent3.putExtra("type","imgs");
                         startActivity(intent3);

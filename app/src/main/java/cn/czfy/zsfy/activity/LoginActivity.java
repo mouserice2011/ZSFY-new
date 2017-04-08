@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.tool.MyConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,6 @@ import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.dao.StudentDao;
 import cn.czfy.zsfy.http.CookieHttp;
 import cn.czfy.zsfy.tool.ChengjiDialog;
-import cn.czfy.zsfy.tool.MyConstants;
 
 
 /**

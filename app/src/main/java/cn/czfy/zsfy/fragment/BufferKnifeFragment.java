@@ -15,13 +15,13 @@ import cn.czfy.zsfy.model.SearchShop;
 import cn.czfy.zsfy.ui.UIHelper;
 import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshBase;
 import cn.czfy.zsfy.ui.quickadapter.QuickAdapter;
+import cn.czfy.zsfy.http.HttpResponseHandler;
+import cn.czfy.zsfy.http.RestApiResponse;
+import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshListView;
 import com.squareup.picasso.Picasso;
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.http.HttpClient;
-import cn.czfy.zsfy.http.HttpResponseHandler;
-import cn.czfy.zsfy.http.RestApiResponse;
 import cn.czfy.zsfy.model.SearchParam;
-import cn.czfy.zsfy.ui.pulltorefresh.PullToRefreshListView;
 import cn.czfy.zsfy.ui.quickadapter.BaseAdapterHelper;
 
 import java.util.List;

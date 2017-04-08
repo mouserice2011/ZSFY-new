@@ -11,10 +11,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import cn.czfy.zsfy.R;
+
 import cn.czfy.zsfy.ui.UIHelper;
 import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
 import cn.czfy.zsfy.utils.SharedPreferences;
+
+import cn.czfy.zsfy.R;
 
 /**
  * Created by tiansj on 15/7/29.

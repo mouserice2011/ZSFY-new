@@ -2,13 +2,13 @@ package cn.czfy.zsfy.http;
 
 import android.content.Context;
 
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Random;
-
-import cn.czfy.zsfy.db.dao.StudentDao;
 
 public class DJKnowledgeHttp {
 

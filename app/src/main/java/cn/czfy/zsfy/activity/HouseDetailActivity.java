@@ -9,16 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager;
+import cn.czfy.zsfy.ui.swipebacklayout.SwipeBackActivity;
+import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import cn.czfy.zsfy.R;
-import cn.czfy.zsfy.ui.loopviewpager.AutoLoopViewPager;
-import cn.czfy.zsfy.ui.swipebacklayout.SwipeBackActivity;
-import cn.czfy.zsfy.ui.viewpagerindicator.CirclePageIndicator;
 
 /**
  * Created by tiansj on 15/6/29.

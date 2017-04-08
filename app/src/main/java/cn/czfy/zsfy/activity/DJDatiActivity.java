@@ -15,12 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
-import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.DJKnowledgeData;
 import cn.czfy.zsfy.db.dao.StudentDao;
 import cn.czfy.zsfy.tool.ChengjiDialog;
+
+import java.util.List;
+
+import cn.czfy.zsfy.R;
 
 public class DJDatiActivity extends Activity {
 

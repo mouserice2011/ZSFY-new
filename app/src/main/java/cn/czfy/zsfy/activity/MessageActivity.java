@@ -14,11 +14,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import java.util.List;
 
 import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.db.dao.Message;
-import cn.czfy.zsfy.db.dao.StudentDao;
 
 public class MessageActivity extends BaseActivity {
 

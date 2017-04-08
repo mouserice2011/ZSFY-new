@@ -1,12 +1,12 @@
 package cn.czfy.zsfy.common;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.tencent.smtt.sdk.QbSdk;
 
 
-public class AppContext extends Application {
+public class AppContext extends MultiDexApplication {
 
     private static AppContext app;
 
@@ -48,7 +48,7 @@ public class AppContext extends Application {
 
     // 注册App异常崩溃处理器
     private void registerUncaughtExceptionHandler() {
-        Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
+       // Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
     }
 
 }

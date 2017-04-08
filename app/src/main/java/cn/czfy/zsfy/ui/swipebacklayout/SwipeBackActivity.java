@@ -9,8 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsfy.R;
 import cn.czfy.zsfy.activity.BaseFragmentActivity;
+
+import cn.czfy.zsfy.R;
 
 public class SwipeBackActivity extends BaseFragmentActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;

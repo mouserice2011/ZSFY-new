@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import cn.czfy.zsfy.db.dao.Kebiao;
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,9 +15,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import cn.czfy.zsfy.db.dao.Kebiao;
-import cn.czfy.zsfy.db.dao.StudentDao;
 
 public class JwxtHttp {
     private static StudentDao dao;

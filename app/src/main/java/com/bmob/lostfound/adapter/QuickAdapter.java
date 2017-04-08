@@ -52,7 +52,7 @@ public abstract class QuickAdapter<T> extends BaseQuickAdapter<T, BaseAdapterHel
     }
 
 	protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {
-		return get(context, convertView, parent, layoutResId, position);
+		return BaseAdapterHelper.get(context, convertView, parent, layoutResId, position);
 	}
 
 }

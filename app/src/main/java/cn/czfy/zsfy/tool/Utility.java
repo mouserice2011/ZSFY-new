@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import cn.czfy.zsfy.domain.ArticleWeixinBean;
 import com.google.gson.Gson;
 
 import org.apache.http.client.ClientProtocolException;
@@ -26,7 +27,6 @@ import java.util.Date;
 import java.util.List;
 
 import cn.czfy.zsfy.activity.LibraryActivity;
-import cn.czfy.zsfy.domain.ArticleWeixinBean;
 import cn.czfy.zsfy.domain.BookRecommendBean;
 import cn.czfy.zsfy.http.HttpPostConn;
 import okhttp3.Call;

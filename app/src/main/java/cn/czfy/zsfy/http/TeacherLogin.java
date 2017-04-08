@@ -4,15 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import cn.czfy.zsfy.db.dao.Kebiao;
+import cn.czfy.zsfy.db.dao.StudentDao;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.czfy.zsfy.db.dao.Kebiao;
-import cn.czfy.zsfy.db.dao.StudentDao;
 
 /**
  * ½ÌÊ¦µÇÂ¼

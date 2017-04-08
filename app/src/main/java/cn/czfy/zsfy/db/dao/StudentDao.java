@@ -5,11 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import cn.czfy.zsfy.db.StudentDBOpenhelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.czfy.zsfy.db.DJKnowledgeData;
-import cn.czfy.zsfy.db.StudentDBOpenhelper;
 
 /**
  * 学生信息的dao代码，data access object

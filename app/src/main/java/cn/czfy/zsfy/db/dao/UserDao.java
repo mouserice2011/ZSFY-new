@@ -3,8 +3,8 @@ package cn.czfy.zsfy.db.dao;
 import android.content.Context;
 
 import cn.czfy.zsfy.db.entity.User;
-import com.j256.ormlite.dao.Dao;
 import cn.czfy.zsfy.db.DatabaseHelper;
+import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 

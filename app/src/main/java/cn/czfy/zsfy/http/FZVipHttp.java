@@ -1,5 +1,7 @@
 package cn.czfy.zsfy.http;
 
+import cn.czfy.zsfy.tool.StreamTools;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -12,8 +14,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import cn.czfy.zsfy.tool.StreamTools;
 
 /**
  * Created by sinyu on 2017/2/14.
