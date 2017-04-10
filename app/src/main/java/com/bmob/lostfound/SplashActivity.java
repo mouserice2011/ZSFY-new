@@ -1,6 +1,6 @@
 package com.bmob.lostfound;
 
-import cn.czfy.zsfy.R;
+import cn.czfy.zsdx.R;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

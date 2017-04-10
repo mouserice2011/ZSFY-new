@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <cn.czfy.zsfy.view.CircleImageView
+            <cn.czfy.zsdx.view.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image1"
                 android:layout_width="80dp"

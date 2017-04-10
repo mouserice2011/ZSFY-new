@@ -32,12 +32,12 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.FindListener;
 
-import cn.czfy.zsfy.R;
+import cn.czfy.zsdx.R;
 
-import static cn.czfy.zsfy.R.id.tv_describe;
-import static cn.czfy.zsfy.R.id.tv_photo;
-import static cn.czfy.zsfy.R.id.tv_time;
-import static cn.czfy.zsfy.R.id.tv_title;
+import static cn.czfy.zsdx.R.id.tv_describe;
+import static cn.czfy.zsdx.R.id.tv_photo;
+import static cn.czfy.zsdx.R.id.tv_time;
+import static cn.czfy.zsdx.R.id.tv_title;
 /**
  * Lost/Found
  * 

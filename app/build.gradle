@@ -16,7 +16,7 @@ packer {
 }
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
     android { compileOptions.encoding = "GBK" }
@@ -25,18 +25,18 @@ android {
         renderscriptTargetApi 20
         renderscriptSupportModeEnabled true
 
-        applicationId "cn.czfy.zsfy"
+        applicationId "cn.czfy.zsdx"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 4
         versionName "3.0"
         multiDexEnabled true
     }
     signingConfigs {
         config {
-            keyAlias 'zsdx'
+            keyAlias 'zsfy'
             keyPassword 'czfy2016!@#'
-            storeFile file('E:/桌面文件/掌上大学-纺院V3.0/新版本发布/FYZSDX.jks')
+            storeFile file('E:/桌面文件/教务管理系统/发布/ZSFY')
             storePassword 'czfy2016!@#'
         }
     }

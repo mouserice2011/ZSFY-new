@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 
 import com.bmob.lostfound.i.IPopupItemClick;
-import cn.czfy.zsfy.R;
+import cn.czfy.zsdx.R;
 
 /** ³¤°´±à¼­µ¯´°
   * @ClassName: EditPopupWindow

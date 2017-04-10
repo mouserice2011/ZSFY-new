@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp">
 
-    <cn.czfy.zsfy.view.CircleImageView
+    <cn.czfy.zsdx.view.CircleImageView
         android:id="@+id/iv_user_head"
         android:layout_width="80dp"
         android:layout_height="80dp"

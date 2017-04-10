@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/activity/BaseFragmentActivity.java" charset="GB2312" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/activity/ImageGalleryActivity.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/DJKnowledgeData.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/StudentDBOpenhelper.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/dao/Chengji.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/dao/Kebiao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/dao/Message.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/db/dao/StudentDao.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/BasicInfoHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/CookieHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/DJKnowledgeHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/FZVipHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/FeedbackHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/FoundLost.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/HttpPostConn.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/JwxtHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/MessageHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/QueryzaocaoHttp.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/SetUser.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/TeacherLogin.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsfy/http/UpdateCJ.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/activity/BaseFragmentActivity.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/activity/ImageGalleryActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/DJKnowledgeData.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/StudentDBOpenhelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/dao/Chengji.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/dao/Kebiao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/dao/Message.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/db/dao/StudentDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/BasicInfoHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/CookieHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/DJKnowledgeHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/FZVipHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/FeedbackHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/FoundLost.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/HttpPostConn.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/JwxtHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/MessageHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/QueryzaocaoHttp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/SetUser.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/TeacherLogin.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/UpdateCJ.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/GDTUnionSDK.4.9.543.min.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/bmob_v3.1.1beta.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/libs/commons-codec-1.9.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/libs/commons-logging-1.2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/httpclient-4.5.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/libs/httpclient-cache-4.5.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/libs/httpclient-win-4.5.2.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/jsoup-1.9.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/libs/picasso-2.2.0.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/anim/fadein.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/anim/fadeout.xml" charset="UTF-8" />
@@ -53,16 +48,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/zaocao_2.jpg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/zaocao_3.jpg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/values/color.xml" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/libs/GDTUnionSDK.4.9.543.min.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/bmob_v3.1.1beta.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/commons-codec-1.9.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/commons-logging-1.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/httpclient-4.5.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/httpclient-cache-4.5.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/httpclient-win-4.5.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/jsoup-1.9.2.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/picasso-2.2.0.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
