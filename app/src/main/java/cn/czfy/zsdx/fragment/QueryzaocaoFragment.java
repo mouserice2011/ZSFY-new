@@ -22,7 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsdx.tool.ZaocaoInfo;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
@@ -43,6 +42,7 @@ import cn.czfy.zsdx.http.HttpPostConn;
 import cn.czfy.zsdx.http.QueryzaocaoHttp;
 import cn.czfy.zsdx.tool.DateUtils;
 import cn.czfy.zsdx.tool.Utility;
+import cn.czfy.zsdx.tool.ZaocaoInfo;
 import cn.czfy.zsdx.ui.loopviewpager.AutoLoopViewPager;
 import cn.czfy.zsdx.ui.viewpagerindicator.CirclePageIndicator;
 
@@ -99,20 +99,7 @@ public class QueryzaocaoFragment extends Fragment {
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("StuData", 0);
         ed_search.setText(sp.getString("xh", ""));
-        //广告延时一秒
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Message msg=new Message();
-                msg.what=3;
-                myhandler.sendMessage(msg);
-            }
-        }).start();
+
 
         bt_zaocao_query = (ImageView) view.findViewById(R.id.bt_zaocao_query);
 
@@ -161,6 +148,12 @@ public class QueryzaocaoFragment extends Fragment {
         return view;
         
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     void initpagerView() {
 
         imageViewIds = new int[] { R.drawable.zaocao_1, R.drawable.zaocao_2, R.drawable.zaocao_3};
@@ -217,6 +210,20 @@ public class QueryzaocaoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //广告延时一秒
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Message msg=new Message();
+                msg.what=3;
+                myhandler.sendMessage(msg);
+            }
+        }).start();
         pager.startAutoScroll();
     }
 

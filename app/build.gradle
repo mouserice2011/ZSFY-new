@@ -7,12 +7,12 @@ packer {
     manifestMatcher = ['UMENG_CHANNEL', 'Promotion_Market']
     archiveOutput = file(new File(project.rootProject.buildDir.path, "apks"))
     archiveNameFormat = '${appPkg}-c-${buildType}-${buildTime}'
-
-    /**版本号自增**/
-    // 指定是否使用build版本号自增
-    buildNumberAuto = true
-    // 指定使用版本号自增的buildType，默认是全部
-    buildNumberTypeMatcher = ['release', 'debug']
+//
+//    /**版本号自增**/
+//    // 指定是否使用build版本号自增
+//    buildNumberAuto = true
+//    // 指定使用版本号自增的buildType，默认是全部
+//    buildNumberTypeMatcher = ['release', 'debug']
 }
 
 android {
@@ -29,7 +29,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 4
-        versionName "3.0"
+        versionName "3.0.637"
         multiDexEnabled true
     }
     signingConfigs {

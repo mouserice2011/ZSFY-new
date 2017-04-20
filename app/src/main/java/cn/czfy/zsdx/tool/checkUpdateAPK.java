@@ -130,6 +130,7 @@ public class checkUpdateAPK {
         pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pd.setMessage("正在下载更新(单位：KB)");
         pd.show();
+
         new Thread() {
             @Override
             public void run() {
@@ -165,6 +166,7 @@ public class checkUpdateAPK {
         public void handleMessage(Message msg) {
             // TODO Auto-generated method stub
             super.handleMessage(msg);
+           // UIHelper.ToastMessage(context, info.getUrl());
             switch (msg.what) {
                 case UPDATA_NONEED:
 //                    Toast.makeText(context, "您的应用为最新版本",
@@ -184,7 +186,7 @@ public class checkUpdateAPK {
                 case DOWN_ERROR:
                     // 下载apk失败
                     handler.sendEmptyMessage(8);
-                    Toast.makeText(context, "下载新版本失败", 1).show();
+                    Toast.makeText(context, "下载新版本失败", Toast.LENGTH_LONG).show();
                     break;
                 case 5:
 //                    SharedPreferences.Editor et = setting.edit();
