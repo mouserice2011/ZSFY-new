@@ -41,10 +41,12 @@ import cn.czfy.zsdx.activity.MyWebActivity;
 import cn.czfy.zsdx.activity.PerInfoActivity;
 import cn.czfy.zsdx.domain.ArticleWeixinBean;
 import cn.czfy.zsdx.domain.BookRecommendBean;
+import cn.czfy.zsdx.domain.FoundLostListBean;
 import cn.czfy.zsdx.http.DJKnowledgeHttp;
 import cn.czfy.zsdx.tool.ImageGallery2Activity;
-import cn.czfy.zsdx.tool.SaveBookRecommend;
-import cn.czfy.zsdx.tool.SaveWeixinArticle;
+import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
+import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
+import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
 import cn.czfy.zsdx.tool.Utility;
 import cn.czfy.zsdx.ui.UIHelper;
 import cn.czfy.zsdx.ui.loopviewpager.AutoLoopViewPager;
@@ -56,10 +58,10 @@ import cn.czfy.zsdx.ui.viewpagerindicator.CirclePageIndicator;
  */
 public class HomeFragment extends Fragment {
     private GridView gv;
-    private TextView name, tv_bookname, tv_zuozhe, tv_tuijianyu, tv_morebook,tv_morearticle;
+    private TextView name, tv_bookname, tv_zuozhe, tv_tuijianyu, tv_morebook, tv_morearticle, tv_morefoundlost;
     private MyAdapter adapter;
     private ImageView iv_book;
-    private ListView list_Article;
+    private ListView list_Article, lv_foundlost;
     private Fragment mContent;
     private ImageView iv_home_touxiang;
     private int[] one = new int[]{
@@ -79,6 +81,8 @@ public class HomeFragment extends Fragment {
             "http://202.119.168.66:8080/test/pic/home_2.png",
             "http://202.119.168.66:8080/test/pic/home_3.png"));
     private List<ArticleWeixinBean.newsList> articles;
+    private List<FoundLostListBean.ListBean> foundlostlistBean;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -95,13 +99,16 @@ public class HomeFragment extends Fragment {
         name = (TextView) view.findViewById(R.id.name);
         iv_book = (ImageView) view.findViewById(R.id.iv_book);
         tv_morebook = (TextView) view.findViewById(R.id.tv_morebook);
-        tv_morearticle= (TextView) view.findViewById(R.id.tv_morearticle);
+        tv_morearticle = (TextView) view.findViewById(R.id.tv_morearticle);
         tv_bookname = (TextView) view.findViewById(R.id.tv_bookname);
         tv_zuozhe = (TextView) view.findViewById(R.id.tv_zuozhe);
         tv_tuijianyu = (TextView) view.findViewById(R.id.tv_tuijianyu);
         pager = (AutoLoopViewPager) view.findViewById(R.id.pager);
         indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
-        list_Article= (ListView) view.findViewById(R.id.list_Article);
+        list_Article = (ListView) view.findViewById(R.id.list_Article);
+        tv_morefoundlost = (TextView) view.findViewById(R.id.tv_morefoundlost);
+        lv_foundlost = (ListView) view.findViewById(R.id.lv_foundlost);
+
 
         LinearLayout lay_book = (LinearLayout) view.findViewById(R.id.lay_book);
         lay_book.setOnClickListener(new View.OnClickListener() {
@@ -157,16 +164,16 @@ public class HomeFragment extends Fragment {
                         startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", "http://www.cztgi.edu.cn/").putExtra("title", "常州纺院官网"));
                         break;
                     case 3:
-                         List<String> imageList = new ArrayList<String>();
-                        String src="http://app2.sinyu1012.cn/img/img (";
-                        for(int i=1;i<=40;i++){
-                            imageList.add(src+i+").jpg");
+                        List<String> imageList = new ArrayList<String>();
+                        String src = "http://app2.sinyu1012.cn/img/img (";
+                        for (int i = 1; i <= 40; i++) {
+                            imageList.add(src + i + ").jpg");
                         }
                         Intent intent3 = new Intent(HomeFragment.this.getActivity(), ImageGallery2Activity.class);
                         intent3.putStringArrayListExtra("images", (ArrayList<String>) imageList);
-                        UIHelper.ToastMessage(HomeFragment.this.getActivity(),"多图，建议在WIFI下查看");
+                        UIHelper.ToastMessage(HomeFragment.this.getActivity(), "多图，建议在WIFI下查看");
                         intent3.putExtra("position", 0);
-                        intent3.putExtra("type","imgs");
+                        intent3.putExtra("type", "imgs");
                         startActivity(intent3);
                         break;
                     case 4:
@@ -180,6 +187,12 @@ public class HomeFragment extends Fragment {
             }
         });
         initpagerView();
+        tv_morefoundlost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeFragment.this.getActivity(), MainFoundActivity.class));
+            }
+        });
         tv_morebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,35 +217,52 @@ public class HomeFragment extends Fragment {
         indicator.setViewPager(pager);
         indicator.setPadding(5, 5, 10, 5);
     }
+
+    public void getFoundlost() {
+        try {
+            foundlostlistBean = SaveFoundLostList.foundlosts;
+            MyFoundLostAdapter myFoundLostAdapter = new MyFoundLostAdapter();
+            list_Article.setAdapter(myFoundLostAdapter);
+//            list_Article.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                    startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", articles.get(i).getUrl()).putExtra("title", articles.get(i).getTitle()));
+//                }
+//            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public void getArticle() {
-        try{
-            articles= SaveWeixinArticle.articles;
-            MyarticlesAdapter myarticlesAdapter=new MyarticlesAdapter();
+        try {
+            articles = SaveWeixinArticle.articles;
+            MyarticlesAdapter myarticlesAdapter = new MyarticlesAdapter();
             list_Article.setAdapter(myarticlesAdapter);
             list_Article.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    startActivity(new Intent(HomeFragment.this.getActivity(),MyWebActivity.class).putExtra("url",articles.get(i).getUrl()).putExtra("title",articles.get(i).getTitle()));
+                    startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", articles.get(i).getUrl()).putExtra("title", articles.get(i).getTitle()));
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     public void getBook() {
-        try{
+        try {
             List<BookRecommendBean.Book> books = SaveBookRecommend.books;
             if (books.size() > 0) {
-                System.out.print("------------------------"+books.size());
+                System.out.print("------------------------" + books.size());
                 final Utility utility = new Utility();
                 utility.setPicture("http://202.119.168.66:8080/test/pic/book" + books.size() + ".png", iv_book);
                 tv_bookname.setText(books.get(0).getBookname());
                 tv_zuozhe.setText("作者：" + books.get(0).getZuozhe());
                 tv_tuijianyu.setText("推荐语：" + books.get(0).getTuijianyu());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -419,7 +449,8 @@ public class HomeFragment extends Fragment {
         ImageView iv;
         TextView tv;
     }
-    class MyArticle extends BaseAdapter{
+
+    class MyArticle extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -443,6 +474,7 @@ public class HomeFragment extends Fragment {
             return view;
         }
     }
+
     public class MyarticlesAdapter extends BaseAdapter {
 
         @Override
@@ -462,15 +494,51 @@ public class HomeFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            View v=View.inflate(HomeFragment.this.getActivity(),R.layout.list_article,null);
-            ImageView im= (ImageView) v.findViewById(R.id.iv_article);
-            Utility tool=new Utility();
-            ArticleWeixinBean.newsList article=articles.get(i);
-            tool.setPicture(article.getPicUrl(),im);
-            TextView tv_articlename= (TextView) v.findViewById(R.id.tv_name);
-            TextView tv_zuozhe= (TextView) v.findViewById(R.id.tv_zuozhe);
+            View v = View.inflate(HomeFragment.this.getActivity(), R.layout.list_article, null);
+            ImageView im = (ImageView) v.findViewById(R.id.iv_article);
+            Utility tool = new Utility();
+            ArticleWeixinBean.newsList article = articles.get(i);
+            tool.setPicture(article.getPicUrl(), im);
+            TextView tv_articlename = (TextView) v.findViewById(R.id.tv_name);
+            TextView tv_zuozhe = (TextView) v.findViewById(R.id.tv_zuozhe);
             tv_articlename.setText(article.getTitle());
-            tv_zuozhe.setText("公众号："+article.getDescription());
+            tv_zuozhe.setText("公众号：" + article.getDescription());
+            return v;
+        }
+    }
+
+    public class MyFoundLostAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return articles.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View v = View.inflate(HomeFragment.this.getActivity(), R.layout.item_list, null);
+            TextView textView1= (TextView) v.findViewById(R.id.tv_title);
+            TextView textView2= (TextView) v.findViewById(R.id.tv_describe);
+            TextView textView3= (TextView) v.findViewById(R.id.tv_time);
+            TextView textView4= (TextView) v.findViewById(R.id.tv_photo);
+           //缺个time字段
+            FoundLostListBean.ListBean listBean= foundlostlistBean.get(i);
+            textView1.setText(listBean.getTitle());
+            textView2.setText(listBean.getContent());
+            textView3.setText(listBean.getType());
+            textView4.setText(listBean.getPhone());
+
+
             return v;
         }
     }

@@ -44,6 +44,7 @@ public class StartActivity extends Activity implements SplashADListener {
         }
         GetBI();
         Utility.getBookRem();
+        Utility.getFoundLost();
         Utility.getWeixinArticle();
         try {
             fetchSplashAD(this, container, null, "1105409129", "4010723087987612", this, 0);

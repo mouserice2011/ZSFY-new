@@ -16,7 +16,7 @@ import java.util.List;
 
 import cn.czfy.zsdx.R;
 
-import cn.czfy.zsdx.tool.SaveWeixinArticle;
+import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
 import cn.czfy.zsdx.tool.Utility;
 
 public class MoreArticleActivity extends BaseActivity{

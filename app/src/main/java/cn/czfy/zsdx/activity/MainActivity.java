@@ -41,7 +41,11 @@ import cn.czfy.zsdx.fragment.MemberFragment;
 import cn.czfy.zsdx.http.MessageHttp;
 import cn.czfy.zsdx.tool.CustomDialog;
 import cn.czfy.zsdx.tool.DateUtils;
+import cn.czfy.zsdx.tool.ListCache.SaveBookData;
+import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
 import cn.czfy.zsdx.tool.MyConstants;
+import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
+import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
 import cn.czfy.zsdx.tool.checkUpdateAPK;
 import cn.czfy.zsdx.ui.UIHelper;
 
@@ -77,7 +81,7 @@ public class MainActivity extends BaseFragmentActivity {
         checkUpdateAPK.jianchagengxin();
 
         String packageName = "com.czfy.zsfy";
-        Uninstall(packageName);
+        //Uninstall(packageName);
     }
     /**
      * 卸载指定包名的应用
@@ -155,7 +159,6 @@ public class MainActivity extends BaseFragmentActivity {
         Boolean user_msg = setting.getBoolean("user_Msg", true);
         if (!user_msg) {
             //Toast.makeText(this, ""+user_msg, 0).show();
-            System.out.println(user_msg);
             tv_newmsg.setVisibility(View.VISIBLE);
         } else {
             tv_newmsg.setVisibility(View.GONE);
@@ -420,6 +423,10 @@ public class MainActivity extends BaseFragmentActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
+            SaveBookRecommend.clear();
+            SaveWeixinArticle.clear();
+            SaveFoundLostList.clear();
+            SaveBookData.clear();
             return true;
         }
         return super.onKeyDown(keyCode, event);

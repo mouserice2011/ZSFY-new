@@ -13,7 +13,7 @@ import java.util.List;
 
 import cn.czfy.zsdx.R;
 import cn.czfy.zsdx.domain.BookRecommendBean;
-import cn.czfy.zsdx.tool.SaveBookRecommend;
+import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
 import cn.czfy.zsdx.tool.Utility;
 
 public class MoreBookRecActivity extends BaseActivity{

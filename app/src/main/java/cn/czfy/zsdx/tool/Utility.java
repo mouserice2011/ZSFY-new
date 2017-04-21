@@ -12,7 +12,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import cn.czfy.zsdx.domain.ArticleWeixinBean;
 import com.google.gson.Gson;
 
 import org.apache.http.client.ClientProtocolException;
@@ -27,8 +26,14 @@ import java.util.Date;
 import java.util.List;
 
 import cn.czfy.zsdx.activity.LibraryActivity;
+import cn.czfy.zsdx.domain.ArticleWeixinBean;
 import cn.czfy.zsdx.domain.BookRecommendBean;
+import cn.czfy.zsdx.domain.FoundLostListBean;
 import cn.czfy.zsdx.http.HttpPostConn;
+import cn.czfy.zsdx.tool.ListCache.SaveBookData;
+import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
+import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
+import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -198,6 +203,35 @@ public class Utility {
            }
         });
     }
+    public static void getFoundLost() {
+        final Utility utility=new Utility();
+        //创建okHttpClient对象
+        OkHttpClient mOkHttpClient = new OkHttpClient();
+        //创建一个Request
+        final Request request = new Request.Builder()
+                .url("http://202.119.168.66:8080/test/GetFoundLostListServlet")
+                .build();
+        //new call
+        Call call = mOkHttpClient.newCall(request);
+        //请求加入调度
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //醉了 response.body().string()只能使用一次
+                Gson gson=new Gson();
+                FoundLostListBean foundLostListBean=new FoundLostListBean();
+                foundLostListBean=gson.fromJson(response.body().string().toString(),FoundLostListBean.class);
+                SaveFoundLostList.save(foundLostListBean.getList());
+
+            }
+        });
+    }
+
     public static void getWeixinArticle() {//微信缓存
         final Utility utility=new Utility();
         //创建okHttpClient对象
