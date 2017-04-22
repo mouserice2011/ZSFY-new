@@ -31,6 +31,15 @@ public class FoundLostListBean {
         private String title;
         private String content;
         private String phone;
+        private String time;
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
 
         public String getType() {
             return type;

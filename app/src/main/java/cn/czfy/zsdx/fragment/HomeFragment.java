@@ -207,6 +207,7 @@ public class HomeFragment extends Fragment {
         });
         getBook();
         getArticle();
+        getFoundlost();
         return view;
     }
 
@@ -220,20 +221,22 @@ public class HomeFragment extends Fragment {
 
     public void getFoundlost() {
         try {
+            System.out.println(SaveFoundLostList.foundlosts.get(0).getContent());
             foundlostlistBean = SaveFoundLostList.foundlosts;
             MyFoundLostAdapter myFoundLostAdapter = new MyFoundLostAdapter();
-            list_Article.setAdapter(myFoundLostAdapter);
-//            list_Article.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                    startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", articles.get(i).getUrl()).putExtra("title", articles.get(i).getTitle()));
-//                }
-//            });
+            lv_foundlost.setAdapter(myFoundLostAdapter);
+            lv_foundlost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    startActivity(new Intent(HomeFragment.this.getActivity(), MainFoundActivity.class));
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
     public void getArticle() {
         try {
             articles = SaveWeixinArticle.articles;
@@ -511,7 +514,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return articles.size();
+            return foundlostlistBean.size();
         }
 
         @Override
@@ -527,15 +530,15 @@ public class HomeFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View v = View.inflate(HomeFragment.this.getActivity(), R.layout.item_list, null);
-            TextView textView1= (TextView) v.findViewById(R.id.tv_title);
-            TextView textView2= (TextView) v.findViewById(R.id.tv_describe);
-            TextView textView3= (TextView) v.findViewById(R.id.tv_time);
-            TextView textView4= (TextView) v.findViewById(R.id.tv_photo);
-           //È±¸ötime×Ö¶Î
-            FoundLostListBean.ListBean listBean= foundlostlistBean.get(i);
+            TextView textView1 = (TextView) v.findViewById(R.id.tv_title);
+            TextView textView2 = (TextView) v.findViewById(R.id.tv_describe);
+            TextView textView3 = (TextView) v.findViewById(R.id.tv_time);
+            TextView textView4 = (TextView) v.findViewById(R.id.tv_photo);
+            //È±¸ötime×Ö¶Î
+            FoundLostListBean.ListBean listBean = foundlostlistBean.get(i);
             textView1.setText(listBean.getTitle());
             textView2.setText(listBean.getContent());
-            textView3.setText(listBean.getType());
+            textView3.setText(listBean.getTime());
             textView4.setText(listBean.getPhone());
 
 

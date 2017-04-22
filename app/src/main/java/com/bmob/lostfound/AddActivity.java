@@ -132,7 +132,7 @@ public class AddActivity extends BaseActivity implements OnClickListener {
 		new Thread() {
 			public void run() {
 				SimpleDateFormat formatter = new SimpleDateFormat(
-						"yyyy年MM月dd日HH:mm:ss");
+						"yyyy-MM-dd HH:mm:ss");
 				Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
 				String time = formatter.format(curDate);
 				SharedPreferences sp = AddActivity.this.getSharedPreferences("StuData", 0);
