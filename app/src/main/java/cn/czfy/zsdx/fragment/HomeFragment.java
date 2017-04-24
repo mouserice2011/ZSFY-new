@@ -13,6 +13,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +71,7 @@ public class HomeFragment extends Fragment {
             R.drawable.home_xiaopic};
     private String[] two = new String[]{"失物招领",
             "党基学习", "校园官网", "美丽纺院"};
-
+    private ScrollView scrollView;
     private ProgressDialog pd;
     AutoLoopViewPager pager;
     CirclePageIndicator indicator;
@@ -108,7 +110,7 @@ public class HomeFragment extends Fragment {
         list_Article = (ListView) view.findViewById(R.id.list_Article);
         tv_morefoundlost = (TextView) view.findViewById(R.id.tv_morefoundlost);
         lv_foundlost = (ListView) view.findViewById(R.id.lv_foundlost);
-
+        scrollView= (ScrollView) view.findViewById(R.id.scrollView);
 
         LinearLayout lay_book = (LinearLayout) view.findViewById(R.id.lay_book);
         lay_book.setOnClickListener(new View.OnClickListener() {
@@ -231,6 +233,16 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(HomeFragment.this.getActivity(), MainFoundActivity.class));
                 }
             });
+            lv_foundlost.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                        scrollView.requestDisallowInterceptTouchEvent(true);
+                    }
+                    return false;
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
