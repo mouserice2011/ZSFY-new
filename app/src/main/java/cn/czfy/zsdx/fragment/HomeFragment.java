@@ -13,7 +13,6 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -233,15 +232,16 @@ public class HomeFragment extends Fragment {
                     startActivity(new Intent(HomeFragment.this.getActivity(), MainFoundActivity.class));
                 }
             });
-            lv_foundlost.setOnTouchListener(new View.OnTouchListener() {
-
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        scrollView.requestDisallowInterceptTouchEvent(true);
-                    }
-                    return false;
-                }
-            });
+            /*listview 与 scrollview 滑动冲突解决*/
+//            lv_foundlost.setOnTouchListener(new View.OnTouchListener() {
+//
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+//                        scrollView.requestDisallowInterceptTouchEvent(true);
+//                    }
+//                    return false;
+//                }
+//            });
 
         } catch (Exception e) {
             e.printStackTrace();
