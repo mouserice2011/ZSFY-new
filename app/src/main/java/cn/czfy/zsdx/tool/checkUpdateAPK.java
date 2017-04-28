@@ -1,6 +1,7 @@
 package cn.czfy.zsdx.tool;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,9 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -29,6 +33,7 @@ public class checkUpdateAPK {
     private static final String TAG = "context";
     private String localVersion;
     private UpdataInfo info;
+    private String detail;
     private final int UPDATA_NONEED = 0;
     private final int UPDATA_CLIENT = 1;
     private final int GET_UNDATAINFO_ERROR = 2;
@@ -103,6 +108,29 @@ public class checkUpdateAPK {
         return packInfo.versionName;
     }
 
+    public void showNoticeDialog() {
+        // 构造对话框
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.update_fw_dialog, null);
+        builder.setView(view);
+        final Dialog noticeDialog = builder.create();
+        noticeDialog.show();
+        TextView confirm = (TextView) noticeDialog.findViewById(R.id.confirm);
+        // text.setOnClickListener(new DialogInterface.OnClickListener()
+        confirm.setOnClickListener(new android.view.View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                noticeDialog.dismiss();
+                downLoadApk();
+                // showDownloadDialog();
+            }
+        });
+        TextView desc_tv = (TextView) noticeDialog.findViewById(R.id.desc);
+        desc_tv.setText(info.getDescription());
+    }
+
     protected void showUpdataDialog() {
         AlertDialog.Builder builer = new AlertDialog.Builder(context);
         builer.setTitle("版本升级");
@@ -166,7 +194,7 @@ public class checkUpdateAPK {
         public void handleMessage(Message msg) {
             // TODO Auto-generated method stub
             super.handleMessage(msg);
-           // UIHelper.ToastMessage(context, info.getUrl());
+            // UIHelper.ToastMessage(context, info.getUrl());
             switch (msg.what) {
                 case UPDATA_NONEED:
 //                    Toast.makeText(context, "您的应用为最新版本",
@@ -176,7 +204,8 @@ public class checkUpdateAPK {
                 case UPDATA_CLIENT:
                     // 对话框通知用户升级程序
                     handler.sendEmptyMessage(8);
-                    showUpdataDialog();
+//                    showUpdataDialog();
+                    showNoticeDialog();
                     break;
                 case GET_UNDATAINFO_ERROR:
                     // 服务器超时

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/update_fw_dialog_style" 
+    android:focusableInTouchMode="true"
+	android:focusable="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/update_fw_dialog_style" 
+        android:orientation="vertical">
+
+         <ImageView
+             android:layout_width="45dp"
+             android:layout_height="45dp"
+             android:layout_gravity="center"
+             android:layout_margin="4dp"
+             android:layout_marginTop="-30dp"
+             android:background="@drawable/czfy"
+             android:gravity="center" />
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="新版出来啦！\n纺院掌上大学一直在努力。"
+            android:textAlignment="center"
+            android:textColor="@color/darkblue"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_margin="10dp"
+            android:background="@color/whitesmoke"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="检查到新的版本，本次升级，添加了更多功能！是否升级？"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+         <TextView
+             android:id="@+id/confirm"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:layout_margin="10dp"
+             android:background="@drawable/circlebluebtn"
+             android:gravity="center"
+             android:padding="10dp"
+             android:text="马上升级"
+             android:textAlignment="center"
+             android:textColor="@color/white"
+             android:textSize="22sp" />
+
+        </LinearLayout>
+        </LinearLayout>

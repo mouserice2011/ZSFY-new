@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class UpdataInfoParser {
 	public static UpdataInfo getUpdataInfo(InputStream is) throws Exception {
 		XmlPullParser parser = Xml.newPullParser();
-		parser.setInput(is, "utf-8");
+		parser.setInput(is, "GBK");
 		int type = parser.getEventType();
 		UpdataInfo info = new UpdataInfo();
 		while(type != XmlPullParser.END_DOCUMENT ){
