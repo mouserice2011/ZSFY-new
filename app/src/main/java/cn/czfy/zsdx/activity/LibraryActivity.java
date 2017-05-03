@@ -2,9 +2,13 @@ package cn.czfy.zsdx.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -16,15 +20,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsdx.tool.BookData;
-
 import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
 import java.util.List;
 
 import cn.czfy.zsdx.R;
-
+import cn.czfy.zsdx.tool.BookData;
 import cn.czfy.zsdx.tool.ListCache.SaveBookData;
 import cn.czfy.zsdx.tool.SearchBook;
 
@@ -50,7 +52,7 @@ public class LibraryActivity extends BaseActivity {
 		showTitle("图书查询",null);
 		showBackBtn();
 		Intent intent = getIntent();
-		strBookname = intent.getStringExtra("str");
+		strBookname = intent.getStringExtra("strBookname");
 		lv_lib = (ListView) findViewById(R.id.lv_lib);
 		tv_page = (TextView) findViewById(R.id.tv_page);
 		tv_nextpage = (TextView) findViewById(R.id.tv_nextpage);
@@ -192,7 +194,21 @@ public class LibraryActivity extends BaseActivity {
 			TextView suoyinno = (TextView) view
 					.findViewById(R.id.tv_lv_suoshuno);
 			BookData b = bd.get(position);
-			tvname.setText(b.getName());
+			/*部分文字颜色*/
+
+			String BookName=b.getName();
+			try{
+				int fstart=BookName.indexOf(strBookname);
+				int fend=fstart+strBookname.length();
+				SpannableStringBuilder style=new SpannableStringBuilder(BookName);
+				style.setSpan(new ForegroundColorSpan(Color.BLUE),fstart,fend, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+				tvname.setText(style);
+			}catch (Exception e){
+				e.printStackTrace();
+				tvname.setText(BookName);
+			}
+
+
 			tvnameinfo.setText("书名信息：" + b.getNameinfo());
 			guancang.setText("馆藏信息：" + b.getGuancanginfo());
 			suoyinno.setText("索书号：" + b.getSuoshuno());

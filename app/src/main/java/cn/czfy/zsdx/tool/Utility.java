@@ -128,6 +128,7 @@ public class Utility {
         String xh=context.getSharedPreferences("StuData",0).getString("xh","访客");
         setSearchBookLog(xh,str);
         lib_intent = new Intent(context, LibraryActivity.class);
+        lib_intent.putExtra("strBookname",str);
                 /* 显示ProgressDialog */
         lib_pd = ProgressDialog.show(context, "", "加载中，请稍后……");
 

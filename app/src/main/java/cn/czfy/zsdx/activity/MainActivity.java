@@ -35,17 +35,17 @@ import java.util.List;
 import cn.czfy.zsdx.R;
 import cn.czfy.zsdx.db.dao.StudentDao;
 import cn.czfy.zsdx.fragment.KebiaoFragment;
-import cn.czfy.zsdx.fragment.LibraryFragment;
+import cn.czfy.zsdx.fragment.LibraryPagerFragment;
 import cn.czfy.zsdx.fragment.MainPagerFragment;
 import cn.czfy.zsdx.fragment.MemberFragment;
 import cn.czfy.zsdx.http.MessageHttp;
 import cn.czfy.zsdx.tool.CustomDialog;
 import cn.czfy.zsdx.tool.DateUtils;
 import cn.czfy.zsdx.tool.ListCache.SaveBookData;
-import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
-import cn.czfy.zsdx.tool.MyConstants;
 import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
+import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
 import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
+import cn.czfy.zsdx.tool.MyConstants;
 import cn.czfy.zsdx.tool.checkUpdateAPK;
 import cn.czfy.zsdx.ui.UIHelper;
 
@@ -245,7 +245,7 @@ public class MainActivity extends BaseFragmentActivity {
             case 1:
                 return kebiaoFragment;
             case 2:
-                return new LibraryFragment();
+                return new LibraryPagerFragment();
             case 3:
                 return new MemberFragment();
             default:

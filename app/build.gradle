@@ -29,7 +29,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 4
-        versionName "3.0.638"
+        versionName "3.0.637"
         multiDexEnabled true
     }
     signingConfigs {
@@ -113,7 +113,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'in.srain.cube:ultra-ptr:1.0.10'
-    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:support-v4:25.3.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
 }

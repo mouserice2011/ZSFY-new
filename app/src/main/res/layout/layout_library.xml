@@ -15,8 +15,6 @@
                 android:id="@+id/lv_lib"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="6dp"
-                android:layout_marginRight="6dp"
                 android:layout_weight="1" />
 
         <View
@@ -30,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="10"
-            android:background="#cfcfcf"
+            android:background="@color/gray_light"
             android:orientation="horizontal" >
 
             <TextView

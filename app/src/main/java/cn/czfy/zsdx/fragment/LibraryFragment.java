@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,18 +16,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsdx.tool.BookData;
-import cn.czfy.zsdx.tool.Utility;
-
 import org.apache.http.client.ClientProtocolException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.czfy.zsdx.R;
+import cn.czfy.zsdx.activity.ImageGalleryActivity;
 import cn.czfy.zsdx.activity.LibraryActivity;
+import cn.czfy.zsdx.tool.BookData;
 import cn.czfy.zsdx.tool.ListCache.SaveBookData;
 import cn.czfy.zsdx.tool.SearchBook;
+import cn.czfy.zsdx.tool.Utility;
+import cn.czfy.zsdx.ui.loopviewpager.AutoLoopViewPager;
+import cn.czfy.zsdx.ui.viewpagerindicator.CirclePageIndicator;
 
 /**
  * @author sinyu
@@ -51,7 +56,14 @@ public class LibraryFragment extends Fragment implements OnClickListener {
     private TextView tv_search_re11;
     private TextView tv_search_re12;
     Intent intent;
-
+    AutoLoopViewPager pager;
+    CirclePageIndicator indicator;
+    private GalleryPagerAdapter galleryAdapter;
+    private int[] imageViewIds;
+    private List<String> imageList = new ArrayList<String>(Arrays.asList(
+            "http://202.119.168.66:8080/test/pic/home_1.png",
+            "http://202.119.168.66:8080/test/pic/home_2.png",
+            "http://202.119.168.66:8080/test/pic/home_3.png"));
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -79,6 +91,8 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         tv_search_re10 = (TextView) view.findViewById(R.id.tv_search_re10);
         tv_search_re11 = (TextView) view.findViewById(R.id.tv_search_re11);
         tv_search_re12 = (TextView) view.findViewById(R.id.tv_search_re12);
+        pager = (AutoLoopViewPager) view.findViewById(R.id.pager);
+        indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
 
         tv_search_re1.setOnClickListener(this);
 
@@ -94,6 +108,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         tv_search_re11.setOnClickListener(this);
         tv_search_re12.setOnClickListener(this);
 
+        initpagerView();
         bt_lib_search.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -106,6 +121,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
                     return;
                 }
                 intent = new Intent(LibraryFragment.this.getActivity(), LibraryActivity.class);
+                intent.putExtra("strBookname",str);
                 /* 显示ProgressDialog */
                 pd = ProgressDialog.show(LibraryFragment.this.getActivity(), "", "加载中，请稍后……");
                 String xh=LibraryFragment.this.getActivity().getSharedPreferences("StuData",0).getString("xh","访客");
@@ -138,7 +154,13 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         });
         return view;
     }
-
+    void initpagerView() {//轮播
+        imageViewIds = new int[]{R.drawable.home_czfy, R.drawable.home_czfy, R.drawable.home_3};
+        galleryAdapter = new GalleryPagerAdapter();
+        pager.setAdapter(galleryAdapter);
+        indicator.setViewPager(pager);
+        indicator.setPadding(5, 5, 10, 5);
+    }
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {// handler接收到消息后就会执行此方法
@@ -199,6 +221,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
     public void searchText(final String str1) {
 
         intent = new Intent(LibraryFragment.this.getActivity(), LibraryActivity.class);
+        intent.putExtra("strBookname",str1);
         /* 显示ProgressDialog */
         pd = ProgressDialog.show(LibraryFragment.this.getActivity(), "", "加载中，请稍后……");
         String xh=LibraryFragment.this.getActivity().getSharedPreferences("StuData",0).getString("xh","访客");
@@ -223,6 +246,62 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         }.start();
     }
 
+    //轮播图适配器
+    public class GalleryPagerAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return imageViewIds.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            ImageView item = new ImageView(LibraryFragment.this.getActivity());
+            item.setImageResource(imageViewIds[position]);
+            Utility tool = new Utility();
+            tool.setPicture(imageList.get(position), item);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(-1, -1);
+            item.setLayoutParams(params);
+            item.setScaleType(ImageView.ScaleType.FIT_XY);
+            container.addView(item);
+
+            final int pos = position;
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LibraryFragment.this.getActivity(), ImageGalleryActivity.class);
+                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
+                    intent.putExtra("position", pos);
+                    startActivity(intent);
+                }
+            });
+
+            return item;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        pager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        pager.stopAutoScroll();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -232,14 +311,6 @@ public class LibraryFragment extends Fragment implements OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-
-        super.onResume();
-        //getFocus();
     }
 
 //	private void switchFragment(Fragment fragment, String title) {

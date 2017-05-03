@@ -96,9 +96,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.MyWebActivity" />
-        <activity android:name=".activity.MoreBookRecActivity"></activity>
-        <activity android:name=".tool.ImageGallery2Activity"/>
-        <activity android:name=".activity.MoreArticleActivity"/>
+        <activity android:name=".activity.MoreBookRecActivity" />
+        <activity android:name=".tool.ImageGallery2Activity" />
+        <activity android:name=".activity.MoreArticleActivity" />
+        <activity android:name=".activity.LibraryLoginActivity"></activity>
     </application>
 
 </manifest>

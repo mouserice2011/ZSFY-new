@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import cn.czfy.zsdx.activity.LibraryLoginActivity;
 import cn.czfy.zsdx.activity.LoginActivity;
 import cn.czfy.zsdx.activity.HouseDetailActivity;
 import cn.czfy.zsdx.activity.MainActivity;
@@ -48,6 +49,10 @@ public class UIHelper {
 
     public static void showLogin(Activity context){
         Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+    public static void showLibraryLogin(Activity context){
+        Intent intent = new Intent(context, LibraryLoginActivity.class);
         context.startActivity(intent);
     }
 

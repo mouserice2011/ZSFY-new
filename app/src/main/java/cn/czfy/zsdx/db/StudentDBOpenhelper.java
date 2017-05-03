@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class StudentDBOpenhelper extends SQLiteOpenHelper {
 
 	public StudentDBOpenhelper(Context context) {
-		super(context, "student.db", null, 2);
+		super(context, "student.db", null, 3);
 		System.out.println("创建2db");
 		// TODO Auto-generated constructor stub
 	}
@@ -20,8 +20,9 @@ public class StudentDBOpenhelper extends SQLiteOpenHelper {
 		db.execSQL("create table kebiao(time  varchar(20),monday varchar(20),tuesday varchar(20),wednesday varchar(20),thursday varchar(20),friday varchar(20),saturated varchar(20),sunday varchar(20))");
 		//新
 		db.execSQL("create table message(type  varchar(20),title varchar(100),content varchar(1000),time varchar(20))");
-		
 		db.execSQL("create table djknowledge(type  varchar(20),title varchar(300),content varchar(1000),answerA varchar(100),answerB varchar(100),answerC varchar(100),answerD varchar(100),answer varchar(20))");
+		db.execSQL("create table libnow(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20),xujieno varchar(20))");
+		db.execSQL("create table libhis(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20))");
 
 		
 	}
@@ -33,10 +34,12 @@ public class StudentDBOpenhelper extends SQLiteOpenHelper {
 		if(oldVersion==1)
 		{
 			db.execSQL("create table message(type  varchar(20),title varchar(100),content varchar(1000),time varchar(20))");
-			
 			db.execSQL("create table djknowledge(type  varchar(20),title varchar(300),content varchar(1000),answerA varchar(100),answerB varchar(100),answerC varchar(100),answerD varchar(100),answer varchar(20))");
-
-			
+		}else if(oldVersion==2)
+		{
+			System.out.println("创建5DB");
+			db.execSQL("create table libnow(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20),xujieno varchar(20))");
+			db.execSQL("create table libhis(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20))");
 		}
 	
 	}

@@ -7,5 +7,11 @@
 		<item>成绩查询</item>
 		<!--<item>校园动态</item>-->
 	</string-array>
+	<string-array name="library_titles">
+		<item>图书检索</item>
+		<item>当前借阅</item>
+		<item>已借图书</item>
+		<item>个人中心</item>
+	</string-array>
 
 </resources>

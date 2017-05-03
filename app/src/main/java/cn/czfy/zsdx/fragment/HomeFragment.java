@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
             "党基学习", "校园官网", "美丽纺院"};
     private ScrollView scrollView;
     private ProgressDialog pd;
+
     AutoLoopViewPager pager;
     CirclePageIndicator indicator;
 
