@@ -60,6 +60,7 @@ public class AddActivity extends BaseActivity implements OnClickListener {
 	public void initListeners() {
 		// TODO Auto-generated method stub
 		btn_back.setOnClickListener(this);
+
 		btn_true.setOnClickListener(this);
 	}
 
