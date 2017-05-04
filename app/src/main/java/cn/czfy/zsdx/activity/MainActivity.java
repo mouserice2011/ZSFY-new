@@ -178,6 +178,12 @@ public class MainActivity extends BaseFragmentActivity {
                         break;
                     case R.id.foot_bar_interest:
                         setTitleLibrary();
+                        showTitleRightBtnWithText("官网", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(MainActivity.this, MyWebActivity.class).putExtra("url", "http://lib.cztgi.edu.cn/").putExtra("title", "图书馆"));
+                            }
+                        });
                         currIndex = 2;
                         break;
                     case R.id.main_footbar_user:
@@ -303,7 +309,7 @@ public class MainActivity extends BaseFragmentActivity {
         Left_tv.setVisibility(View.GONE);
         TextView textHeadTitle = (TextView) this.findViewById(R.id.textHeadTitle);
         textHeadTitle.setVisibility(View.VISIBLE);
-        textHeadTitle.setText("馆藏查询");
+        textHeadTitle.setText("图文中心");
     }
 
     private void setTitleMember() {

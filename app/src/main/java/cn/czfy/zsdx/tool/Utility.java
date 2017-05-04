@@ -1,6 +1,7 @@
 package cn.czfy.zsdx.tool;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.qq.e.ads.interstitial.AbstractInterstitialADListener;
+import com.qq.e.ads.interstitial.InterstitialAD;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -53,6 +56,7 @@ public class Utility {
 
     /**
      * 工具：网络图片加载
+     *
      * @param uri
      * @param imageView
      */
@@ -72,9 +76,9 @@ public class Utility {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(picByte, 0, picByte.length);
                     imageView.setImageBitmap(bitmap);
                 }
-            }else if (msg.what == 0) {
+            } else if (msg.what == 0) {
                 lib_pd.dismiss();// 关闭ProgressDialog
-                context. startActivity(lib_intent);
+                context.startActivity(lib_intent);
             } else {
                 Toast.makeText(context, "网络请求超时", Toast.LENGTH_LONG).show();
             }
@@ -115,20 +119,21 @@ public class Utility {
     };
     List<BookData> bd;
     Intent lib_intent;
-     ProgressDialog lib_pd;
+    ProgressDialog lib_pd;
 
     /**
      * 工具： 图书馆搜索图书
+     *
      * @param context
      * @param str
      */
     public void searchBook(Context context, final String str) {
-       // final List<BookData> bd=new ArrayList<>();
-        this.context=context;
-        String xh=context.getSharedPreferences("StuData",0).getString("xh","访客");
-        setSearchBookLog(xh,str);
+        // final List<BookData> bd=new ArrayList<>();
+        this.context = context;
+        String xh = context.getSharedPreferences("StuData", 0).getString("xh", "访客");
+        setSearchBookLog(xh, str);
         lib_intent = new Intent(context, LibraryActivity.class);
-        lib_intent.putExtra("strBookname",str);
+        lib_intent.putExtra("strBookname", str);
                 /* 显示ProgressDialog */
         lib_pd = ProgressDialog.show(context, "", "加载中，请稍后……");
 
@@ -145,7 +150,7 @@ public class Utility {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                if (bd== null) {
+                if (bd == null) {
                     lib_pd.dismiss();// 关闭ProgressDialog
 //							showToastInAnyThread("网络请求超时");
                     handle.sendEmptyMessage(2);//子线程更新ui  toast
@@ -156,7 +161,30 @@ public class Utility {
             ;
         }.start();
     }
-    public static  void setSearchBookLog(final String xh,final String bookname) {
+
+    public void showChapin(Activity context) {
+
+        final InterstitialAD iad = new InterstitialAD(context, "1105409129", "4000720160622508");
+        iad.setADListener(new AbstractInterstitialADListener() {
+            @Override
+            public void onADReceive() {
+                /*
+                * 展示插屏广告，仅在回调接口的adreceive事件发生后调用才有效。
+                */
+                iad.show();
+            }
+
+            @Override
+            public void onNoAD(int i) {
+                Log.i("AD_DEMO", "LoadInterstitialAd Fail:" + i);
+            }
+        });
+
+        //请求插屏广告，每次重新请求都可以调用此方法。
+        iad.loadAD();
+    }
+
+    public static void setSearchBookLog(final String xh, final String bookname) {
         Log.d("setSearchBookLog", "setSearchBookLog: " + bookname);
         new Thread(new Runnable() {
             @Override
@@ -167,9 +195,9 @@ public class Utility {
             }
         }).start();
 
-
     }
-    public static String getnowTime(){
+
+    public static String getnowTime() {
         SimpleDateFormat formatter = new SimpleDateFormat(
                 "yyyy年MM月dd日HH:mm:ss");
         Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
@@ -178,10 +206,10 @@ public class Utility {
     }
 
     public static void getBookRem() {
-        final Utility utility=new Utility();
+        final Utility utility = new Utility();
         //创建okHttpClient对象
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        //创建一个Request
+//创建一个Request
         final Request request = new Request.Builder()
                 .url("http://202.119.168.66:8080/test/BookRecommendServlet")
                 .build();
@@ -197,18 +225,19 @@ public class Utility {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 //醉了 response.body().string()只能使用一次
-                Gson gson=new Gson();
-                BookRecommendBean bookRecommendBean=new BookRecommendBean();
-                bookRecommendBean=gson.fromJson(response.body().string().toString(),BookRecommendBean.class);
+                Gson gson = new Gson();
+                BookRecommendBean bookRecommendBean = new BookRecommendBean();
+                bookRecommendBean = gson.fromJson(response.body().string().toString(), BookRecommendBean.class);
                 SaveBookRecommend.save(bookRecommendBean.getBooks());
-           }
+            }
         });
     }
+
     public static void getFoundLost() {
-        final Utility utility=new Utility();
+        final Utility utility = new Utility();
         //创建okHttpClient对象
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        //创建一个Request
+//创建一个Request
         final Request request = new Request.Builder()
                 .url("http://202.119.168.66:8080/test/GetFoundLostListServlet")
                 .build();
@@ -224,9 +253,9 @@ public class Utility {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 //醉了 response.body().string()只能使用一次
-                Gson gson=new Gson();
-                FoundLostListBean foundLostListBean=new FoundLostListBean();
-                foundLostListBean=gson.fromJson(response.body().string().toString(),FoundLostListBean.class);
+                Gson gson = new Gson();
+                FoundLostListBean foundLostListBean = new FoundLostListBean();
+                foundLostListBean = gson.fromJson(response.body().string().toString(), FoundLostListBean.class);
                 SaveFoundLostList.save(foundLostListBean.getList());
 
             }
@@ -234,10 +263,10 @@ public class Utility {
     }
 
     public static void getWeixinArticle() {//微信缓存
-        final Utility utility=new Utility();
+        final Utility utility = new Utility();
         //创建okHttpClient对象
         OkHttpClient mOkHttpClient = new OkHttpClient();
-        //创建一个Request
+//创建一个Request
         final Request request = new Request.Builder()
                 .url("https://api.tianapi.com/wxnew/?key=2e31ce9b9f0ddd581df3157015bcadc8&num=20&rand=1")
                 .build();
@@ -253,9 +282,9 @@ public class Utility {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 //醉了 response.body().string()只能使用一次
-                Gson gson=new Gson();
-                ArticleWeixinBean articleWeixinBean=new ArticleWeixinBean();
-                articleWeixinBean=gson.fromJson(response.body().string().toString(),ArticleWeixinBean.class);
+                Gson gson = new Gson();
+                ArticleWeixinBean articleWeixinBean = new ArticleWeixinBean();
+                articleWeixinBean = gson.fromJson(response.body().string().toString(), ArticleWeixinBean.class);
                 SaveWeixinArticle.save(articleWeixinBean.getNewslist());
             }
         });

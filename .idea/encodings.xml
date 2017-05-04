@@ -22,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/SetUser.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/TeacherLogin.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/http/UpdateCJ.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/cn/czfy/zsdx/view/TasksCompletedView.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/GDTUnionSDK.4.9.543.min.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/bmob_v3.1.1beta.jar" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/libs/httpclient-4.5.2.jar" charset="UTF-8" />

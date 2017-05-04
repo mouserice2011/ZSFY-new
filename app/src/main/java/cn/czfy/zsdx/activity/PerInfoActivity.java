@@ -24,19 +24,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.czfy.zsdx.tool.DownLoadManager;
-import cn.czfy.zsdx.tool.MyConstants;
-
 import java.io.File;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import cn.czfy.zsdx.R;
-
+import cn.czfy.zsdx.tool.DownLoadManager;
 import cn.czfy.zsdx.tool.FeedbackDialog;
+import cn.czfy.zsdx.tool.MyConstants;
 import cn.czfy.zsdx.tool.UpdataInfo;
 import cn.czfy.zsdx.tool.UpdataInfoParser;
+import cn.czfy.zsdx.ui.UIHelper;
 import cn.czfy.zsdx.view.CircleImageView;
 
 /**
@@ -70,6 +69,9 @@ public class PerInfoActivity extends BaseActivity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_personinfo);
+		if (!this.getSharedPreferences(MyConstants.FIRST, 0).getBoolean(MyConstants.FIRST, false)) {
+			UIHelper.showLogin(PerInfoActivity.this);
+		}
 		findViews();
 		showBackBtn();
 		showTitle("个人资料",null);

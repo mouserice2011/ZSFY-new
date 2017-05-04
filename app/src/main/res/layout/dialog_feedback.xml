@@ -37,7 +37,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_edittext_selector"
-                android:hint="Email" />
+                android:hint="QQ" />
 
             <EditText
                 android:id="@+id/et_feed_content"

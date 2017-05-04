@@ -28,6 +28,7 @@ import cn.czfy.zsdx.http.LoginLibraryHttp;
 import cn.czfy.zsdx.http.SetUser;
 import cn.czfy.zsdx.tool.ChengjiDialog;
 import cn.czfy.zsdx.tool.MyConstants;
+import cn.czfy.zsdx.ui.UIHelper;
 
 
 /**
@@ -62,7 +63,7 @@ public class LibraryLoginActivity extends BaseActivity {
                 // TODO Auto-generated method stub
                 ChengjiDialog.Builder builder = new ChengjiDialog.Builder(
                         LibraryLoginActivity.this);
-                builder.setMessage("    如果第一次使用图书馆登录，请先点击右下角灰色按钮，进入网页使用学号登录，进去输入姓名注册一下。 \n     已经使用过的，请使用学号密码登录。由于验证码是OCR识图技术，所以可能存在误差，登录失败，可再次点击登录。  ");
+                builder.setMessage("    如果第一次使用图书馆登录，请先点击右下角灰色按钮，进入网页使用学号（帐号），密码为学号登录，进去输入姓名注册一下。 \n     已经使用过的，请使用学号密码登录。由于验证码是OCR识图技术，所以可能存在误差，登录失败，可再次点击登录。  ");
                 builder.setTitle("关于");
                 builder.setPositiveButton("确定",
                         new DialogInterface.OnClickListener() {
@@ -164,12 +165,13 @@ public class LibraryLoginActivity extends BaseActivity {
             };
         }.start();
 
-        shp.edit().putBoolean(MyConstants.LibraryLogin_FIRST, true).commit();
+
     }
 
     // 第一次使用
     public void first(View view) {
-
+        startActivity(new Intent(this, MyWebActivity.class).putExtra("url", "http://219.230.40.3:8080/reader/login.php").putExtra("title", "图书馆登录"));
+        UIHelper.ToastMessage(this, "第一次用，帐号密码都为学号，细读右侧文字");
     }
 
     public void showToastInAnyThread(final String text) {
@@ -186,6 +188,7 @@ public class LibraryLoginActivity extends BaseActivity {
         public void handleMessage(Message msg) {// handler接收到消息后就会执行此方法
             pd.dismiss();// 关闭ProgressDialog
             if (msg.what == 1) {
+                shp.edit().putBoolean(MyConstants.LibraryLogin_FIRST, true).commit();
                 new Thread() {
                     public void run() {
                         getUser();
@@ -203,7 +206,7 @@ public class LibraryLoginActivity extends BaseActivity {
             } else if (msg.what == 0) {
                 showToastInAnyThread("密码或后台验证码验证失败，请重试");
             } else if (msg.what == 2) {
-                showToastInAnyThread("服务器拥挤请稍后重试");
+                showToastInAnyThread("是否为首次使用，是请点击首次使用激活，否请等待");
             }
 
         }

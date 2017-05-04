@@ -3,17 +3,23 @@ package cn.czfy.zsdx.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import cn.czfy.zsdx.R;
-import cn.czfy.zsdx.activity.MainActivity;
 import cn.czfy.zsdx.tool.MyConstants;
 import cn.czfy.zsdx.ui.UIHelper;
+import cn.czfy.zsdx.view.HorizontalProgressbarWithProgress;
 
 /**
  * Created by sinyu on 2017/5/1.
@@ -22,20 +28,56 @@ import cn.czfy.zsdx.ui.UIHelper;
 public class LibraryPersonalFragment extends Fragment {
 
     private View view;
-
     private LinearLayout bt_zx;
     private SharedPreferences sp;
+    private HorizontalProgressbarWithProgress progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_library_personal, container, false);
         sp=LibraryPersonalFragment.this.getActivity().getSharedPreferences(MyConstants.LibraryLogin_FIRST, 0);
-        if (!sp.getBoolean(MyConstants.FIRST, false)) {
+        if (!sp.getBoolean(MyConstants.LibraryLogin_FIRST, false)) {
             UIHelper.showLibraryLogin(LibraryPersonalFragment.this.getActivity());
         }
         bt_zx=(LinearLayout)view.findViewById(R.id.tv_per_zx);
+        initonClik();
+        try {
+            initview();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+        return view;
+    }
+
+    private void initview(){
+        TextView tv_name= (TextView) view.findViewById(R.id.name);
+        TextView tv_sex= (TextView) view.findViewById(R.id.sex);
+        TextView tv_chenhao= (TextView) view.findViewById(R.id.chenhao);
+        TextView tv_leiji= (TextView) view.findViewById(R.id.leiji);
+        TextView tv_weizhang= (TextView) view.findViewById(R.id.weizhang);
+        TextView tv_qiankuan= (TextView) view.findViewById(R.id.qiankuan);
+        TextView tv_chaoyue= (TextView) view.findViewById(R.id.chaoyue);
+        progressBar= (HorizontalProgressbarWithProgress) view.findViewById(R.id.progressBar);
+        SharedPreferences sp = LibraryPersonalFragment.this.getActivity().getSharedPreferences(
+                "Library_StuData", 0);
+        tv_name.setText("姓名："+sp.getString("name",""));
+       // tv_sex.setText(sp.getString("sex",""));
+        tv_leiji.setText("累计借阅："+sp.getString("leiji",""));
+        tv_chenhao.setText("称号："+sp.getString("chenghao",""));
+        tv_weizhang.setText("违章次数："+sp.getString("weizhangcishu","")+"次");
+        tv_qiankuan.setText("欠款金额："+sp.getString("qiankuanjine","")+"元");
+        String chaoyue="排在"+sp.getString("chaoyue","")+"的人之前";
+        int fstart=chaoyue.indexOf(sp.getString("chaoyue",""));
+        int fend=fstart+sp.getString("chaoyue","").length();
+        SpannableStringBuilder style=new SpannableStringBuilder(chaoyue);
+        style.setSpan(new ForegroundColorSpan(Color.BLUE),fstart,fend, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(new RelativeSizeSpan(2),fstart,fend, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        tv_chaoyue.setText(style);
+        progressBar.setProgress(Integer.parseInt(sp.getString("chaoyue","").split("%")[0]));
+    }
+    private void initonClik(){
         bt_zx.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -49,10 +91,10 @@ public class LibraryPersonalFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss(); //关闭dialog
-                        sp.edit().putBoolean(MyConstants.FIRST, false).commit();
-                        MainActivity.Intaface.finish();
+                        sp.edit().putBoolean(MyConstants.LibraryLogin_FIRST, false).commit();
+
                         UIHelper.showLibraryLogin(LibraryPersonalFragment.this.getActivity());
-                       // LibraryPersonalFragment.this.getActivity().finish();
+                        // LibraryPersonalFragment.this.getActivity().finish();
 
                         //Toast.makeText(PerInfoActivity.this, "确认" + which, Toast.LENGTH_SHORT).show();
                     }
@@ -69,8 +111,6 @@ public class LibraryPersonalFragment extends Fragment {
 
             }
         });
-        return view;
     }
-
 
 }
