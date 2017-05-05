@@ -162,7 +162,7 @@ public class Utility {
         }.start();
     }
 
-    public void showChapin(Activity context) {
+    public static void showChapin(Activity context) {
 
         final InterstitialAD iad = new InterstitialAD(context, "1105409129", "4000720160622508");
         iad.setADListener(new AbstractInterstitialADListener() {

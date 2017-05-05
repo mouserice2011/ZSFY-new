@@ -21,6 +21,7 @@ public class StudentDBOpenhelper extends SQLiteOpenHelper {
 		//ÐÂ
 		db.execSQL("create table message(type  varchar(20),title varchar(100),content varchar(1000),time varchar(20))");
 		db.execSQL("create table djknowledge(type  varchar(20),title varchar(300),content varchar(1000),answerA varchar(100),answerB varchar(100),answerC varchar(100),answerD varchar(100),answer varchar(20))");
+		//3
 		db.execSQL("create table libnow(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20),xujieno varchar(20))");
 		db.execSQL("create table libhis(name  varchar(30),auther varchar(20),stime varchar(20),etime varchar(20),address varchar(20))");
 

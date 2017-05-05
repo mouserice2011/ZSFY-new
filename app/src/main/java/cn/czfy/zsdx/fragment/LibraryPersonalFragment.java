@@ -13,11 +13,13 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.czfy.zsdx.R;
 import cn.czfy.zsdx.tool.MyConstants;
+import cn.czfy.zsdx.tool.Utility;
 import cn.czfy.zsdx.ui.UIHelper;
 import cn.czfy.zsdx.view.HorizontalProgressbarWithProgress;
 
@@ -52,6 +54,7 @@ public class LibraryPersonalFragment extends Fragment {
     }
 
     private void initview(){
+        ImageView img_sex= (ImageView) view.findViewById(R.id.img_sex);
         TextView tv_name= (TextView) view.findViewById(R.id.name);
         TextView tv_sex= (TextView) view.findViewById(R.id.sex);
         TextView tv_chenhao= (TextView) view.findViewById(R.id.chenhao);
@@ -63,12 +66,16 @@ public class LibraryPersonalFragment extends Fragment {
         SharedPreferences sp = LibraryPersonalFragment.this.getActivity().getSharedPreferences(
                 "Library_StuData", 0);
         tv_name.setText("姓名："+sp.getString("name",""));
-       // tv_sex.setText(sp.getString("sex",""));
+        tv_sex.setText("性别："+sp.getString("sex",""));
         tv_leiji.setText("累计借阅："+sp.getString("leiji",""));
         tv_chenhao.setText("称号："+sp.getString("chenghao",""));
         tv_weizhang.setText("违章次数："+sp.getString("weizhangcishu","")+"次");
         tv_qiankuan.setText("欠款金额："+sp.getString("qiankuanjine","")+"元");
         String chaoyue="排在"+sp.getString("chaoyue","")+"的人之前";
+        if(sp.getString("sex","").equals("女")){
+            img_sex.setImageResource(R.drawable.woman);
+        }
+        Utility.showChapin(LibraryPersonalFragment.this.getActivity());
         int fstart=chaoyue.indexOf(sp.getString("chaoyue",""));
         int fend=fstart+sp.getString("chaoyue","").length();
         SpannableStringBuilder style=new SpannableStringBuilder(chaoyue);

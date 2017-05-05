@@ -25,6 +25,7 @@ public class LibraryLoginBean  {
 
     private int code;
     private String stuName;
+    private String sex;
     private String chaoyue;
     private String chenghao;
     private String leiji;
@@ -42,6 +43,14 @@ public class LibraryLoginBean  {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getStuName() {

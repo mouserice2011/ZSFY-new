@@ -61,9 +61,9 @@ public class LibraryFragment extends Fragment implements OnClickListener {
     private GalleryPagerAdapter galleryAdapter;
     private int[] imageViewIds;
     private List<String> imageList = new ArrayList<String>(Arrays.asList(
-            "http://202.119.168.66:8080/test/pic/home_1.png",
-            "http://202.119.168.66:8080/test/pic/home_2.png",
-            "http://202.119.168.66:8080/test/pic/home_3.png"));
+            "http://202.119.168.66:8080/test/pic/lib_1.png",
+            "http://202.119.168.66:8080/test/pic/lib_2.png",
+            "http://202.119.168.66:8080/test/pic/lib_3.png"));
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -155,7 +155,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         return view;
     }
     void initpagerView() {//ÂÖ²¥
-        imageViewIds = new int[]{R.drawable.home_czfy, R.drawable.home_czfy, R.drawable.home_3};
+        imageViewIds = new int[]{R.drawable.czfylib, R.drawable.home_czfy, R.drawable.home_3};
         galleryAdapter = new GalleryPagerAdapter();
         pager.setAdapter(galleryAdapter);
         indicator.setViewPager(pager);

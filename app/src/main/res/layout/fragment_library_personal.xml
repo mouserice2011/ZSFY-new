@@ -18,6 +18,8 @@
             android:paddingLeft="10dp">
 
             <ImageView
+                android:id="@+id/img_sex"
+                android:src="@drawable/male"
                 android:layout_width="100dp"
                 android:layout_height="150dp" />
 

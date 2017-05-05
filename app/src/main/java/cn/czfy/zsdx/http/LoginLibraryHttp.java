@@ -42,6 +42,7 @@ public class LoginLibraryHttp {
                     String name = libraryLoginBean.getStuName();
                    // String sex = libraryLoginBean.get;
                     String banji = libraryLoginBean.getBanji();
+                    String sex=libraryLoginBean.getSex();
                     String chaoyue =libraryLoginBean.getChaoyue();
                     String chenghao =libraryLoginBean.getChenghao();
                     String leiji =libraryLoginBean.getLeiji();
@@ -56,6 +57,7 @@ public class LoginLibraryHttp {
                     System.out.println("±£´æ¡£¡£¡£¡£");
                     System.out.println(name + " " + banji);
                     et.putString("name", name);
+                    et.putString("sex",sex);
 //                    et.putString("sex", sex);
                     et.putString("chaoyue", chaoyue);
                     et.putString("banji", banji);
