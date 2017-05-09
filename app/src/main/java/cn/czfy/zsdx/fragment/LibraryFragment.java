@@ -26,8 +26,12 @@ import java.util.List;
 import cn.czfy.zsdx.R;
 import cn.czfy.zsdx.activity.ImageGalleryActivity;
 import cn.czfy.zsdx.activity.LibraryActivity;
+import cn.czfy.zsdx.activity.MyWebActivity;
+import cn.czfy.zsdx.domain.GetClickUrlBean;
 import cn.czfy.zsdx.tool.BookData;
 import cn.czfy.zsdx.tool.ListCache.SaveBookData;
+import cn.czfy.zsdx.tool.ListCache.SaveHomeUrl;
+import cn.czfy.zsdx.tool.ListCache.SaveLibUrl;
 import cn.czfy.zsdx.tool.SearchBook;
 import cn.czfy.zsdx.tool.Utility;
 import cn.czfy.zsdx.ui.loopviewpager.AutoLoopViewPager;
@@ -64,6 +68,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
             "http://202.119.168.66:8080/test/pic/lib_1.png",
             "http://202.119.168.66:8080/test/pic/lib_2.png",
             "http://202.119.168.66:8080/test/pic/lib_3.png"));
+    private List<GetClickUrlBean.ResBean>  resBean;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -109,6 +114,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         tv_search_re12.setOnClickListener(this);
 
         initpagerView();
+        geturl();
         bt_lib_search.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -172,7 +178,13 @@ public class LibraryFragment extends Fragment implements OnClickListener {
             }
         }
     };
-
+    public void geturl() {
+        try {
+            resBean= SaveLibUrl.urls;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     public void onClick(View v) {//侧滑菜单的点击事??
 
         switch (v.getId()) {
@@ -260,7 +272,7 @@ public class LibraryFragment extends Fragment implements OnClickListener {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             ImageView item = new ImageView(LibraryFragment.this.getActivity());
             item.setImageResource(imageViewIds[position]);
             Utility tool = new Utility();
@@ -274,10 +286,16 @@ public class LibraryFragment extends Fragment implements OnClickListener {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(LibraryFragment.this.getActivity(), ImageGalleryActivity.class);
-                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
-                    intent.putExtra("position", pos);
-                    startActivity(intent);
+
+                    try {
+                        startActivity(new Intent(LibraryFragment.this.getActivity(), MyWebActivity.class).putExtra("url", resBean.get(position).getUrl()).putExtra("title", resBean.get(position).getMemo()));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+//                    Intent intent = new Intent(LibraryFragment.this.getActivity(), ImageGalleryActivity.class);
+//                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
+//                    intent.putExtra("position", pos);
+//                    startActivity(intent);
                 }
             });
 

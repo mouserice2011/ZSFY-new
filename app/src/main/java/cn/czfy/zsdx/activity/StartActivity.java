@@ -43,6 +43,8 @@ public class StartActivity extends Activity implements SplashADListener {
             //showguanggao();
         }
         GetBI();
+        Utility.getHomeurl();
+        Utility.getLiburl();
         Utility.getBookRem();
         Utility.getFoundLost();
         Utility.getWeixinArticle();

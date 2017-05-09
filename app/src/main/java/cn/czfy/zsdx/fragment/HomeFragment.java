@@ -27,8 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bmob.lostfound.MainFoundActivity;
+import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,15 +45,22 @@ import cn.czfy.zsdx.activity.PerInfoActivity;
 import cn.czfy.zsdx.domain.ArticleWeixinBean;
 import cn.czfy.zsdx.domain.BookRecommendBean;
 import cn.czfy.zsdx.domain.FoundLostListBean;
+import cn.czfy.zsdx.domain.GetClickUrlBean;
 import cn.czfy.zsdx.http.DJKnowledgeHttp;
 import cn.czfy.zsdx.tool.ImageGallery2Activity;
 import cn.czfy.zsdx.tool.ListCache.SaveBookRecommend;
 import cn.czfy.zsdx.tool.ListCache.SaveFoundLostList;
+import cn.czfy.zsdx.tool.ListCache.SaveHomeUrl;
 import cn.czfy.zsdx.tool.ListCache.SaveWeixinArticle;
 import cn.czfy.zsdx.tool.Utility;
 import cn.czfy.zsdx.ui.UIHelper;
 import cn.czfy.zsdx.ui.loopviewpager.AutoLoopViewPager;
 import cn.czfy.zsdx.ui.viewpagerindicator.CirclePageIndicator;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * @author sinyu
@@ -84,6 +93,7 @@ public class HomeFragment extends Fragment {
             "http://202.119.168.66:8080/test/pic/home_3.png"));
     private List<ArticleWeixinBean.newsList> articles;
     private List<FoundLostListBean.ListBean> foundlostlistBean;
+    private List<GetClickUrlBean.ResBean>  resBean;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +120,7 @@ public class HomeFragment extends Fragment {
         list_Article = (ListView) view.findViewById(R.id.list_Article);
         tv_morefoundlost = (TextView) view.findViewById(R.id.tv_morefoundlost);
         lv_foundlost = (ListView) view.findViewById(R.id.lv_foundlost);
-        scrollView= (ScrollView) view.findViewById(R.id.scrollView);
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
 
         LinearLayout lay_book = (LinearLayout) view.findViewById(R.id.lay_book);
         lay_book.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +198,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        getHomeurl();
         initpagerView();
         tv_morefoundlost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +222,14 @@ public class HomeFragment extends Fragment {
         getArticle();
         getFoundlost();
         return view;
+    }
+
+    public void getHomeurl() {
+        try {
+            resBean=SaveHomeUrl.urls;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     void initpagerView() {//ÂÖ²¥
@@ -344,7 +363,7 @@ public class HomeFragment extends Fragment {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        public Object instantiateItem(ViewGroup container, final int position) {
             ImageView item = new ImageView(HomeFragment.this.getActivity());
             item.setImageResource(imageViewIds[position]);
             Utility tool = new Utility();
@@ -358,10 +377,16 @@ public class HomeFragment extends Fragment {
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(HomeFragment.this.getActivity(), ImageGalleryActivity.class);
-                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
-                    intent.putExtra("position", pos);
-                    startActivity(intent);
+                    try {
+                        startActivity(new Intent(HomeFragment.this.getActivity(), MyWebActivity.class).putExtra("url", resBean.get(position).getUrl()).putExtra("title", resBean.get(position).getMemo()));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+//                    Intent intent = new Intent(HomeFragment.this.getActivity(), ImageGalleryActivity.class);
+//                    intent.putStringArrayListExtra("images", (ArrayList<String>) imageList);
+//                    intent.putExtra("position", pos);
+//                    startActivity(intent);
                 }
             });
 

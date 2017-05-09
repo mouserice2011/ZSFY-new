@@ -189,6 +189,7 @@ public class LibraryLoginActivity extends BaseActivity {
             pd.dismiss();// ¹Ø±ÕProgressDialog
             if (msg.what == 1) {
                 shp.edit().putBoolean(MyConstants.LibraryLogin_FIRST, true).commit();
+                showToastShort("µÇÂ¼³É¹¦");
                 new Thread() {
                     public void run() {
                         getUser();

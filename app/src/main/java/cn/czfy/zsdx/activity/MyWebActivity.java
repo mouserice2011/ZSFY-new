@@ -41,6 +41,7 @@ public class MyWebActivity extends BaseActivity {
         pg1 = (ProgressBar) findViewById(R.id.progressBar1);
         tbsContent = (com.tencent.smtt.sdk.WebView) findViewById(R.id.tbsContent);
         tbsContent.loadUrl(url);
+
         String title;
         WebSettings webSettings = tbsContent.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -48,7 +49,7 @@ public class MyWebActivity extends BaseActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-                showTitle(view.getTitle(), null);
+               // showTitle(view.getTitle(), null);
                 return true;
             }
         });
