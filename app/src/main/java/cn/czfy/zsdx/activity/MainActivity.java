@@ -221,9 +221,7 @@ public class MainActivity extends BaseFragmentActivity {
             if (!this.getSharedPreferences(MyConstants.FIRST, 0).getBoolean(MyConstants.FIRST, false)) {
                 UIHelper.showLogin(MainActivity.this);
             }
-
         }
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = fragmentManager.findFragmentByTag(fragmentTags.get(currIndex));
         if (fragment == null) {

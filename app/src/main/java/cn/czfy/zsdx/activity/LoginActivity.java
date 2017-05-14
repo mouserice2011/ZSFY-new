@@ -148,7 +148,6 @@ public class LoginActivity extends BaseActivity {
         et_xh.setText(qq);
         et_pwd.setText(pwd);
     }
-
     // 登陆按钮
     public void login(View view) {
 
@@ -158,7 +157,6 @@ public class LoginActivity extends BaseActivity {
             Toast.makeText(this, "账号或者密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
-
         dao.clearChengji();// 清除数据
         dao.clearKebiao();
         SharedPreferences sp = this.getSharedPreferences("StuData", 0);

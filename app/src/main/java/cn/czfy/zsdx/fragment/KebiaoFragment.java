@@ -1041,9 +1041,9 @@ public class KebiaoFragment extends Fragment {
 							xianshi = true;
 						else if (s1.equals("双") && zhouci % 2 == 0)
 							xianshi = true;
-						else {
-							xianshi = true;
-						}
+//						else {
+//							xianshi = true;
+//						}
 					}
 				} else if (fzarr[i].contains("-"))// 包含-
 				{
@@ -1070,7 +1070,7 @@ public class KebiaoFragment extends Fragment {
 			String cl1 = cl.substring(0, cl.length() - 2);// 1-4
 			System.out.println(cl1);
 
-			if (cl1.contains("周"))// 包含-
+			if (cl1.contains("周"))// 包含zhou 表示单双周
 			{
 				String[] fzarr0 = cl1.split("周");
 				System.out.println("??????" + fzarr0[0]);
@@ -1082,13 +1082,14 @@ public class KebiaoFragment extends Fragment {
 				String s1 = fzarr0[1].substring(1, 2);
 				if (startindex <= zhouci && lastindex >= zhouci)// 是否在区间内
 				{
+					System.out.println(s1+"-"+zhouci);
 					if (s1.equals("单") && zhouci % 2 != 0)
 						xianshi = true;
 					else if (s1.equals("双") && zhouci % 2 == 0)
 						xianshi = true;
-					else {
-						xianshi = true;
-					}
+//					else {//无意义
+//						xianshi = true;
+//					}
 				}
 			} else if (cl1.contains("-"))// 包含-
 			{
@@ -1342,9 +1343,7 @@ public class KebiaoFragment extends Fragment {
 		// 设置课表界面
 		// 动态生成12 * maxCourseNum个textview
 		for (int i = 1; i <= 10; i++) {
-
 			for (int j = 1; j <=8; j++) {
-
 				TextView tx = new TextView(KebiaoFragment.this.getActivity());
 				tx.setId((i - 1) * 8 + j);
 				// 除了最后一列，都使用course_text_view_bg背景（最后一列没有右边框）
@@ -1356,19 +1355,19 @@ public class KebiaoFragment extends Fragment {
 					tx.setBackgroundDrawable(KebiaoFragment.this.getActivity()
 							.getResources()
 							.getDrawable(R.drawable.course_table_last_colum));
-				// 鐩稿甯冨眬鍙傛暟
+				//
 				RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(
 						aveWidth * 33 / 32 + 1, gridHeight);
-				// 鏂囧瓧瀵归綈鏂瑰紡
+				//
 				tx.setGravity(Gravity.CENTER);
-				// 瀛椾綋鏍峰紡
+				//
 				tx.setTextAppearance(KebiaoFragment.this.getActivity(),
 						R.style.courseTableText);
-				// 濡傛灉鏄涓?垪锛岄渶瑕佽缃鐨勫簭鍙凤紙1 鍒?12锛?
+				//
 				if (j == 1) {
 					tx.setText(String.valueOf(i));
 					rp.width = aveWidth * 3 / 4;
-					// 璁剧疆浠栦滑鐨勭浉瀵逛綅缃?
+					//
 					if (i == 1)
 						rp.addRule(RelativeLayout.BELOW, empty.getId());
 					else

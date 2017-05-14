@@ -22,7 +22,7 @@ android {
     android { compileOptions.encoding = "GBK" }
     defaultConfig {
         // Warning:Renderscript support mode is not currently supported with renderscript target 21+
-        renderscriptTargetApi 20
+        renderscriptTargetApi 21//当20修改为21之后，7.2不再闪退
         renderscriptSupportModeEnabled true
 
         applicationId "cn.czfy.zsdx"
